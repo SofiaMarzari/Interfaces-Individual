@@ -1,0 +1,13 @@
+#myCanvas{
+    border: solid 1px blue;
+    /*border-radius: 20px;*/
+}
+#grupo_fichas_J1,#grupo_fichas_J2{
+    border: solid 1px blue;
+}
+#div1 {
+    width: 350px;
+    height: 70px;
+    padding: 10px;
+    border: 1px solid #aaaaaa;
+  }
