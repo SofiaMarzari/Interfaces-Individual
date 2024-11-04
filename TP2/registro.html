@@ -1,0 +1,63 @@
+<section class="container_registro">
+    <h2>Registrarse</h2>
+    <section class="div_horizontal">
+        <p style="margin-top: 0px; margin-bottom: 0px;font-family: system-ui;">¿Ya tienes una cuenta?</p>
+        <button id="btn_iniciarSesion_nav" style="background-color: rgba(212, 216, 212, 0.4);font-size: 12px !important;width: 100px;height: 19px;margin-top: 0px !important;margin-bottom: 0px !important; border-radius: 5px; border-style: none;" class="btn-form">Ingresar</button>
+    </section>
+    <div style="width: 100%;display: flex;flex-direction: row;align-items: flex-start;justify-content: start;">
+        <form id="form" class="formulario" action="" method="post" enctype="multipart/form-data">
+            <div>
+                <div class="container_label_input">
+                    <label for="label-nom">Nombre</label>
+                    <input type="text">
+                </div>
+                <div class="container_label_input">
+                    <label for="label-apell">Apellido</label>
+                    <input type="text">
+                </div>
+                <div class="container_label_input">
+                    <label for="label-nickname">Nickname</label>
+                    <input type="text">
+                </div>
+                <div class="container_label_input">
+                    <label for="label-edad">Edad</label>
+                    <input type="text" style="width: 20%;">
+                </div>
+                <div class="container_label_input">
+                    <label for="label-mail">Mail</label>
+                    <input type="text">
+                </div>
+                <div class="container_label_input">
+                    <label for="label-pass">Contraseña</label>
+                    <input type="password">
+                </div>
+                <div class="container_label_input">
+                    <label for="label-repetir-pass">Repetir Contraseña</label>
+                    <input type="password">
+                </div>
+                <div class="container_label_input">
+                    <label for="label-captcha">Captcha de verificación</label>
+                    <!--<input style="width: 20px;margin-left: 0px;" type="checkbox">-->
+                    <img style="width: 70%;border-radius: 5px;" src="uploads/captcha.png" alt="captcha_img">
+                </div>
+            </div>
+            
+            <button id="btn-1" class="btn-animacion1">
+                <span>  Registrate  </span>
+            </button>
+
+            <p id="mensaje-login"> </p>
+        </form>
+        <article id="divisor_vertical">
+            <hr class="divisor_vertical_hr">
+            <p>O</p>
+            <hr class="divisor_vertical_hr">
+        </article>
+        <section style="margin: auto;">
+            <div>
+                <button class="btn-login-oauth" style="background-color: white;color: black;padding-right: 35px;"><img src="uploads/google.png" style="margin-right:5px;" alt=""> Continuar con Google</button>
+                <button class="btn-login-oauth" style="background-color: rgb(33 77 177);color: white;"><svg style="width: 20px;height:20px;margin-right:5px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"/></svg> Continuar con Facebook</button>
+            </div>
+        </section>
+    </div>
+</section>
