@@ -486,6 +486,7 @@ function loadJuegoEnEjecucion() {
                         document.querySelectorAll(".btn_carrusel_sig").forEach(function(btn) {
                             btn.addEventListener('click', translateFunctionSig);
                         });
+                        document.getElementById('jugar').addEventListener('click', loadJuego);
                     }
                 )
             } else {
@@ -497,7 +498,28 @@ function loadJuegoEnEjecucion() {
         container_AJAX.innerHTML = '<h1>Error 505</h1>';
     })
 }
+function loadJuego() {
+    let container_en_ejecucion = document.getElementById('contenedor_en_ejecucion');
+    fetch('../TP3/jugar.html').then(
 
+        function(response) {
+            if (response.ok) {
+                response.text().then(
+                    function(h) {
+                        container_en_ejecucion.innerHTML = h;
+                        document.getElementById('contenedor_en_ejecucion').classList.add("container_en_ejecucion_activo");
+                        load_main();
+                    }
+                )
+            } else {
+                container_AJAX.innerHTML = '<h1>404 - Not Found!</h1>';
+            }
+        }
+
+    ).catch(function(response) {
+        container_AJAX.innerHTML = '<h1>Error 505</h1>';
+    })
+}
 
 document.getElementById('btn-home').addEventListener('click', loadHome);
 

@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', function(){
+function load_main(){
     let canvas = document.getElementById('myCanvas');
-    canvas.width = 1320/*screen.width*/;
-    canvas.height = 755;
+   // canvas.width = 1320/*screen.width*/;
+   // canvas.height = 755;
     //si es 6 en linea:
     //canvas.height = 855;
     let ctx = canvas.getContext("2d");
@@ -11,6 +11,23 @@ document.addEventListener('DOMContentLoaded', function(){
     var ficha_seleccionada = null;
     var press = false;
     let opcion_cantidad_linea = 4; //default
+    let radio,espacio,suma_x,suma_y;
+    if(opcion_cantidad_linea == 4){
+        radio = 40;
+        espacio = 15;
+        suma_x = 75;
+        suma_y = 75;
+    }else if(opcion_cantidad_linea == 5){
+        radio = 32;
+        espacio = 1;
+        suma_x = 75;
+        suma_y = 75;
+    }else if(opcion_cantidad_linea == 5){
+        radio = 30;
+        espacio = 2;
+        suma_x = 65;
+        suma_y = 65;
+    }
     let filas_tablero = opcion_cantidad_linea+2;
     let columnas_tablero = opcion_cantidad_linea+3;
     let cant_fichas_jugador = (filas_tablero*columnas_tablero)/2/*cantidad_fichas(opcion_cantidad_linea, filas_tablero, columnas_tablero)*/;
@@ -18,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function(){
     let press_ficha_j1,press_ficha_j2=false;
     let data_width_tablero = 670;
     let data_height_tablero = 570;
-    var tablero = new Tablero(ctx, "tablero_1.jpg", columnas_tablero, filas_tablero, 40, data_width_tablero, data_height_tablero);
+    var tablero = new Tablero(ctx, "../TP3/tablero_1.jpg", columnas_tablero, filas_tablero, radio, espacio, data_width_tablero, data_height_tablero, suma_x, suma_y);
     tablero.inicializar_matriz();
     tablero.draw();
     cargar_grupos_fichas(cant_fichas_jugador, ctx, jugador1, jugador2);
@@ -29,18 +46,6 @@ document.addEventListener('DOMContentLoaded', function(){
         ev.preventDefault(c);
     });
 
-    /*canvas.addEventListener('drop', function(ev){
-        ev.preventDefault();
-        let x_mouse = ev.clientX;
-        let y_mouse = ev.clientY;
-        tablero.cargar_ficha_en_tablero(x_mouse, y_mouse);
-        //chequear si existe ganador en esta ronda...
-        if(tablero.hay_ganador()){
-    
-        }
-        
-    });*/
-    
     canvas.addEventListener('mousedown', function(ev){
         ev.preventDefault();
         let data = leer_mouse(ev, canvas);
@@ -89,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function(){
             }else if(press_ficha_j2){
                 img_seleccionada = jugador2[0].getImage();
             }
-            comenzar_animacion(ficha_seleccionada, data.x, data.y);
+            comenzar_animacion(ficha_seleccionada, data.x, data.y,ctx,tablero,jugador1,jugador2);
             tablero.cargar_ficha_en_tablero(data.x, data.y, img_seleccionada);
            
             if(press_ficha_j1){
@@ -110,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function(){
             press_ficha_j2=false;
         }
     });
-});
+}
     function dibujar_fichas_jugador(grupo_fichas,medidaX){
         let posX = medidaX;
         let posY = 60;
@@ -135,18 +140,24 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     }
     let yy =0;
-    function comenzar_animacion(ficha_seleccionada, x, y){
+    function comenzar_animacion(ficha_seleccionada, x, y, ctx,tablero,j1,j2){
         yy = y;
-        setInterval(gravedad,50,ficha_seleccionada,x);
+        setInterval(gravedad,50,ficha_seleccionada,x,ctx,tablero,j1,j2);
     }
-    function gravedad(ficha_seleccionada,x){
-        ficha_seleccionada.setCoordenadaX(x);
-        ficha_seleccionada.setCoordenadaY(yy);
-        ficha_seleccionada.draw_image();
-        yy+=50;
+    function gravedad(ficha_seleccionada,x, ctx,tablero,j1,j2){
+        if(yy<570){
+            clearCanvas(ctx);
+            tablero.draw();
+            ficha_seleccionada.setCoordenadaX(x);
+            ficha_seleccionada.setCoordenadaY(yy);
+            ficha_seleccionada.draw_image();
+            yy+=50;
+        }
+        dibujar_fichas_jugador(j1,75);
+        dibujar_fichas_jugador(j2,1100);
     }
     function clearCanvas(ctx){
-        ctx.fillRect(0, 0, 1600, 755);
+        ctx.clearRect(0, 0, 1660, 755);
     }
     function drag(ev) {
         ev.dataTransfer.setData("text", ev.target.id);
@@ -179,11 +190,11 @@ document.addEventListener('DOMContentLoaded', function(){
     }
     function cargar_grupos_fichas(cant_fichas_jugador, ctx, jugador1, jugador2){
         for(let o = 0; o < cant_fichas_jugador; o++){
-            let ficha = new Ficha(40, "fichaAngel.svg", ctx, "white");
+            let ficha = new Ficha(40, "../TP3/fichaAngel.svg", ctx, "white");
             jugador1.push(ficha);
         }
         for(let o = 0; o < cant_fichas_jugador; o++){
-            let ficha = new Ficha(40, "fichaDemonio.svg", ctx, "white");
+            let ficha = new Ficha(40, "../TP3/fichaDemonio.svg", ctx, "white");
             jugador2.push(ficha);
         }
     }

@@ -1,6 +1,9 @@
 class Tablero{
-    constructor(ctx, img_tabl, colum, fila, radio, w, h){
+    constructor(ctx, img_tabl, colum, fila, radio, espacio, w, h, suma_x, suma_y){
         this.ctx = ctx;
+        this.espacio = espacio;
+        this.suma_x = suma_x;
+        this.suma_y = suma_y;
         this.colum_max= colum;
         this.fila_max = fila;
         this.r = radio;
@@ -99,9 +102,9 @@ class Tablero{
     draw(){
             this.ctx.drawImage(this.imagen, this.inicio_draw_x,this.inicio_draw_y, this.width_tablero,this.height_tablero);
             if(this.inicializado){
-                this.draw_de_casilleros_en_ctx(0,0, this.ctx, true, 75, 75, 140, 365, 15);
+                this.draw_de_casilleros_en_ctx(0,0, this.ctx, this.suma_x, this.suma_y, 140, 365, this.espacio);
             }else{
-                this.draw_de_casilleros_en_ctx(0,0, this.ctx, true, 75, 75, 140, 365, 15);
+                this.draw_de_casilleros_en_ctx(0,0, this.ctx, this.suma_x, this.suma_y, 140, 365, this.espacio);
                 this.inicializado = true;
             }
             
@@ -124,7 +127,7 @@ class Tablero{
     /*draw_casillero_vacio(coord_x, coord_y, fill){
 
     }*/
-    draw_de_casilleros_en_ctx(x_ini, y_ini, ctx, vacia, suma_x, suma_y, suma_inicio_y, suma_inicio_x, espacio){
+    draw_de_casilleros_en_ctx(x_ini, y_ini, ctx, suma_x, suma_y, suma_inicio_y, suma_inicio_x, espacio){
         let cont_x = x_ini;
         let cont_y = y_ini;
         let inicioy = true;

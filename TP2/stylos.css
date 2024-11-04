@@ -1238,6 +1238,10 @@ footer>section>h5 {
         margin-bottom: 26px;
         margin-top: 21px;
     }
+    #contenedor_en_ejecucion{
+        width: 1320px !important;
+        height: 755px !important;
+    }
     .contenedor_en_ejecucion>.img_tablero_4_en_linea {
         width: 400px;
         height: 400px;
