@@ -22,10 +22,12 @@ class Tablero{
        //this.inicializar_matriz();
     }
 
-    cargar_ficha_en_tablero(x, y, img_ficha){
+    cargar_ficha_en_tablero(x, y, ficha_seleccionada){
         //buscar casillero en matriz que tenga la posicion (mas o menos) pasadas (coorresponden al mouse)
+        let img_ficha = ficha_seleccionada.getImage();
+        let jugador = ficha_seleccionada.getJugador();
         let pos_column = this.buscar_columna_de_pos_actual(x, y);
-        this.dibujar_ultimo_casillero_disponible_en_pos(pos_column, img_ficha);
+        this.dibujar_ultimo_casillero_disponible_en_pos(pos_column, img_ficha, jugador);
     }
 
     hay_ganador(){
@@ -42,7 +44,7 @@ class Tablero{
         }
     }
 
-    dibujar_ultimo_casillero_disponible_en_pos(colum, img_ficha){
+    dibujar_ultimo_casillero_disponible_en_pos(colum, img_ficha, jugador){
         let freno = false;
         for(let fila = this.fila_max-1; fila >= 0; fila--){
             let casillero = this.matriz[fila][colum];
@@ -53,6 +55,7 @@ class Tablero{
                         casillero.draw_image();
                         casillero.setCasillero();
                         freno = true;
+                        casillero.setJugador(jugador);
                     }
                 }
             }
@@ -85,14 +88,14 @@ class Tablero{
    
     recorrer_matriz(){
         //console.log(this.matriz); completa
-        for(let fila = 0; fila < 7; fila++){
+        for(let fila = 0; fila < this.fila_max; fila++){
             //console.log(this.matriz[fila]);
             let elem_filas = "";
             this.matriz[fila].forEach(function(casillero){
                 //console.log("Valores en columnas de la fila "+fila+":");
                 //console.log(casillero);
                 //elem_filas = elem_filas+"("+casillero.getCoordenadaX()+", "+casillero.getCoordenadaY()+")"+"; ";
-                elem_filas = elem_filas+"("+casillero.getImage()+")"+"; ";
+                elem_filas = elem_filas+"("+casillero.getJugador()+")"+"; ";
             });
             console.log("Valores en columnas de la fila "+fila+":");
             console.log(elem_filas);

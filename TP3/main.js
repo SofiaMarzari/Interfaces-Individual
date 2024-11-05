@@ -95,8 +95,12 @@ function load_main(){
                 img_seleccionada = jugador2[0].getImage();
             }
             comenzar_animacion(ficha_seleccionada, data.x, data.y,ctx,tablero,jugador1,jugador2);
-            tablero.cargar_ficha_en_tablero(data.x, data.y, img_seleccionada);
+            clearCanvas(ctx);
+            tablero.draw();
+            tablero.cargar_ficha_en_tablero(data.x, data.y, ficha_seleccionada);
            
+            //dibujar_fichas_jugador(jugador1,75);
+            //dibujar_fichas_jugador(jugador2, 1100);
             if(press_ficha_j1){
                 jugador1.pop();
             }else if(press_ficha_j2){
@@ -105,6 +109,7 @@ function load_main(){
             dibujar_fichas_jugador(jugador1,75);
             dibujar_fichas_jugador(jugador2,1100);
             //chequear si existe ganador en esta ronda...
+            tablero.recorrer_matriz();
             if(tablero.hay_ganador()){
         
             }
@@ -142,19 +147,19 @@ function load_main(){
     let yy =0;
     function comenzar_animacion(ficha_seleccionada, x, y, ctx,tablero,j1,j2){
         yy = y;
-        setInterval(gravedad,50,ficha_seleccionada,x,ctx,tablero,j1,j2);
+        setInterval(gravedad,5,ficha_seleccionada,x,ctx,tablero,j1,j2);
     }
     function gravedad(ficha_seleccionada,x, ctx,tablero,j1,j2){
         if(yy<570){
             clearCanvas(ctx);
             tablero.draw();
+            dibujar_fichas_jugador(j1,75);
+            dibujar_fichas_jugador(j2,1100);
             ficha_seleccionada.setCoordenadaX(x);
             ficha_seleccionada.setCoordenadaY(yy);
             ficha_seleccionada.draw_image();
             yy+=50;
         }
-        dibujar_fichas_jugador(j1,75);
-        dibujar_fichas_jugador(j2,1100);
     }
     function clearCanvas(ctx){
         ctx.clearRect(0, 0, 1660, 755);
@@ -190,11 +195,11 @@ function load_main(){
     }
     function cargar_grupos_fichas(cant_fichas_jugador, ctx, jugador1, jugador2){
         for(let o = 0; o < cant_fichas_jugador; o++){
-            let ficha = new Ficha(40, "../TP3/fichaAngel.svg", ctx, "white");
+            let ficha = new Ficha(40, "../TP3/fichaAngel.svg", ctx, "white", 1);
             jugador1.push(ficha);
         }
         for(let o = 0; o < cant_fichas_jugador; o++){
-            let ficha = new Ficha(40, "../TP3/fichaDemonio.svg", ctx, "white");
+            let ficha = new Ficha(40, "../TP3/fichaDemonio.svg", ctx, "white", 2);
             jugador2.push(ficha);
         }
     }

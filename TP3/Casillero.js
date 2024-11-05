@@ -1,6 +1,6 @@
 class Casillero extends Ficha{
     constructor(radio, ctx){
-        super(radio, "", ctx, "white");
+        super(radio, "", ctx, "white",0);
         this.valor = 0;
         this.casillero = true;
     }

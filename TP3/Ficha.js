@@ -1,6 +1,7 @@
 class Ficha{
-    constructor(radio, img, ctx, fill){
+    constructor(radio, img, ctx, fill, jugador){
         this.r = radio;
+        this.jugador = jugador;
         this.image_src = img;
         this.fill = fill;
         this.ctx = ctx;
@@ -60,5 +61,11 @@ class Ficha{
     }
     setCasillero(){
         this.casillero = false;     
+    }
+    getJugador(){
+        return this.jugador;
+    }
+    setJugador(j){
+        this.jugador = j;
     }
 }
