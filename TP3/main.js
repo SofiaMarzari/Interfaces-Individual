@@ -39,7 +39,7 @@ function load_main(){
     let data_width_tablero = 670;
     let data_height_tablero = 570;
     //Instanciamos un tablero y le pasamos los valores para sus atributos
-    var tablero = new Tablero(ctx, "../TP3/tablero_1.jpg", columnas_tablero, filas_tablero, radio, espacio, data_width_tablero, data_height_tablero, suma_x, suma_y);
+    var tablero = new Tablero(ctx, "../TP3/uploads/tablero_1.jpg", columnas_tablero, filas_tablero, radio, espacio, data_width_tablero, data_height_tablero, suma_x, suma_y);
     //Creamos e iniciamos la matriz del tablero
     tablero.inicializar_matriz();
     //Dibujamos el tablero
@@ -258,17 +258,17 @@ function load_main(){
         for(let o = 0; o < cant_fichas_jugador*2; o++){
             let ficha = new Ficha(40, "", ctx, "white", 0, false);
             if(o%2==0){
-                ficha.setImage("../TP3/fichaAngel.svg");
+                ficha.setImage("../TP3/uploads/fichaAngel.svg");
                 ficha.setJugador(1);
                 jugador1.push(ficha);
             }else{
-                ficha.setImage("../TP3/fichaDemonio.svg");
+                ficha.setImage("../TP3/uploads/fichaDemonio.svg");
                 ficha.setJugador(2);
                 jugador2.push(ficha);
             }
         }
        /* for(let o = 0; o < cant_fichas_jugador; o++){
-            let ficha = new Ficha(40, "../TP3/fichaDemonio.svg", ctx, "white", 2);
+            let ficha = new Ficha(40, "../TP3/uploads/fichaDemonio.svg", ctx, "white", 2);
             jugador2.push(ficha);
         }*/
     }

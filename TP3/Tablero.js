@@ -102,15 +102,35 @@ class Tablero{
     /*
      *El Tablero se dibuja primero y luego, si es la primera vez que se carga/dibuja guardara dicho estado */
     draw(){
-            this.ctx.drawImage(this.imagen, this.inicio_draw_x,this.inicio_draw_y, this.width_tablero,this.height_tablero);
-            if(this.inicializado){
-                this.draw_de_casilleros_en_ctx(0,0, this.ctx, this.suma_x, this.suma_y, 140, 365, this.espacio);
-            }else{
-                this.draw_de_casilleros_en_ctx(0,0, this.ctx, this.suma_x, this.suma_y, 140, 365, this.espacio);
-                this.inicializado = true;
-            }
-            
+        this.ctx.drawImage(this.imagen, this.inicio_draw_x,this.inicio_draw_y, this.width_tablero,this.height_tablero);
+        if(this.inicializado){
+            this.draw_de_casilleros_en_ctx(0,0, this.ctx, this.suma_x, this.suma_y, 140, 365, this.espacio);
+        }else{
+            this.draw_de_casilleros_en_ctx(0,0, this.ctx, this.suma_x, this.suma_y, 140, 365, this.espacio);
+            this.inicializado = true;
+        }
+        this.draw_hints();
     }
+
+    draw_hints(){
+        let x = 355;
+        for(let c = 0; c < this.colum_max; c++){
+            this.ctx.beginPath();
+            this.ctx.arc(x, 40, 35, 0, 2* Math.PI);
+            this.draw_image_hints(x);
+            this.ctx.closePath();
+            x=x+90;
+        }
+    }
+
+    draw_image_hints(x){
+        let image_hint = new Image();
+        image_hint.src = "../TP3/uploads/flecha_hint.png";
+        image_hint.onload = () => {
+            this.ctx.drawImage(image_hint, x-30, 40-30, 30*2, 30*2);
+        }
+    }
+
     /*draw_ficha(ctx2, coord_x, coord_y, img){
         ctx2.beginPath();
         ctx2.arc(coord_x, coord_y, this.r, 0, 2 * Math.PI);
