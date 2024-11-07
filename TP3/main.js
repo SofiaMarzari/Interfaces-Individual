@@ -5,6 +5,7 @@ function load_main(){
     //si es 6 en linea:
     //canvas.height = 855;
     let ctx = canvas.getContext("2d");
+    let div_mensaje = document.getElementById('div-mensaje-juego');
     /************************************************************************* */
     /*Inicializando variables*/
     var jugador1 = [];
@@ -95,6 +96,8 @@ function load_main(){
         //Si nos encontramos presionando una ficha entonces procede..
         if(press){
             if(ficha_seleccionada != null){//Chequea que tengamos una ficha seleccionada efectivamente, y no en null
+                div_mensaje.classList.remove('visible');
+                div_mensaje.classList.add('no-visible');
                 let data = leer_mouse(ev, canvas);//Pedimos coordenadas del mouse actualmente mientras se presiona
                 //Le modificamos las coordenadas a la Ficha seleccionada para que se mueva
                 ficha_seleccionada.setCoordenadaX(data.x);
@@ -131,7 +134,8 @@ function load_main(){
                     //no llegue
                 }
             }else{
-                console.log("No se puede soltar la ficha fuera de una columna. ¡Intente nuevamente!");
+                div_mensaje.classList.remove('no-visible');
+                div_mensaje.classList.add('visible');
                 ficha_seleccionada.setCoordenadaX(coordX_original);
                 ficha_seleccionada.setCoordenadaY(coordY_original);
                 clearCanvas(ctx);
@@ -195,7 +199,7 @@ function load_main(){
     let interval;
     function comenzar_animacion(ficha_seleccionada, x, y, ctx,tablero,j1,j2){
         yy = y;
-        interval = setInterval(gravedad,5,ficha_seleccionada,x,ctx,tablero,j1,j2);
+        interval = setInterval(gravedad,1,ficha_seleccionada,x,ctx,tablero,j1,j2);
     }
     function gravedad(ficha_seleccionada,x, ctx,tablero,j1,j2){
         if(yy<570){
