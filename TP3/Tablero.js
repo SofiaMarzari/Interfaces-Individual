@@ -25,7 +25,12 @@ class Tablero{
         let img_ficha = ficha_seleccionada.getImage();
         let jugador = ficha_seleccionada.getJugador();
         let pos_column = this.buscar_columna_de_pos_actual(x, y);//Busco en que columna se debe dibujar la Ficha, respecto a la posicion del mouse
-        this.dibujar_ultimo_casillero_disponible_en_pos(pos_column, img_ficha, jugador);//Dibujo la ficha
+        if(pos_column.colum != -1){
+            this.dibujar_ultimo_casillero_disponible_en_pos(pos_column.colum, img_ficha, jugador);//Dibujo la ficha
+            return true;
+        }else{
+            return false;
+        }
     }
 
     hay_ganador(){
@@ -36,7 +41,9 @@ class Tablero{
         for(let fila = 0; fila < this.fila_max; fila++){
             for(let colum = 0; colum < this.colum_max; colum++){
                 if(this.matriz[fila][colum].isPointInside(posX, posY)){
-                    return colum;
+                    return {'colum':colum, 'valido':true};
+                }else if(colum == this.colum_max-1){
+                    return {'colum':-1, 'valido':false};
                 }
             }
         }
@@ -153,14 +160,14 @@ class Tablero{
                     if(!this.matriz[fila][colum].getCasillero()){
                         this.matriz[fila][colum].draw_image();
                     }else{
-                        let casillero = new Casillero(this.r, ctx);
+                        let casillero = new Ficha(this.r, "", ctx, "white", 0, true);
                         casillero.setCoordenadaX(cont_x);
                         casillero.setCoordenadaY(cont_y);
                         casillero.draw();
                         this.matriz[fila][colum] = casillero;
                     }
                 }else{
-                    let casillero = new Casillero(this.r, ctx);
+                    let casillero = new Ficha(this.r,"", ctx, "white", 0, true);
                     casillero.setCoordenadaX(cont_x);
                     casillero.setCoordenadaY(cont_y);
                     casillero.draw();
