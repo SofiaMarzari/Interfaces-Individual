@@ -17,8 +17,18 @@ class Tablero{
         this.inicializado = false;
         this.width_tablero = w;
         this.height_tablero = h;
-        this.inicio_draw_x = 300;
+        this.inicio_draw_x = 350;
         this.inicio_draw_y = 80;
+    }
+
+    isPointInside(mouse_x, mouse_y){
+        let rango_x = ((mouse_x > (this.inicio_draw_x+15)) && (mouse_x < ((this.inicio_draw_x + this.width_tablero)-15)));
+        let rango_y = ((mouse_y > (this.inicio_draw_y+15)) && (mouse_y < ((this.inicio_draw_y + this.height_tablero)-15)));
+        if(rango_x && rango_y){//la ficha esta dentro del tablero
+            return true;
+        }else{
+            return false;
+        }
     }
 
     cargar_ficha_en_tablero(x, y, ficha_seleccionada){//Recibimos coordenada del mouse en x, en y, y el obj Ficha seleccionado
@@ -44,6 +54,8 @@ class Tablero{
                     return {'colum':colum, 'valido':true};
                 }else if(colum == this.colum_max-1){
                     return {'colum':-1, 'valido':false};
+                }else if(posX=((this.r*2)*colum)){
+                    return {'colum':colum, 'valido':true};
                 }
             }
         }
@@ -104,22 +116,22 @@ class Tablero{
     draw(){
         this.ctx.drawImage(this.imagen, this.inicio_draw_x,this.inicio_draw_y, this.width_tablero,this.height_tablero);
         if(this.inicializado){
-            this.draw_de_casilleros_en_ctx(0,0, this.ctx, this.suma_x, this.suma_y, 140, 365, this.espacio);
+            this.draw_de_casilleros_en_ctx(0,0, this.ctx, this.suma_x, this.suma_y, 140, 420, this.espacio);
         }else{
-            this.draw_de_casilleros_en_ctx(0,0, this.ctx, this.suma_x, this.suma_y, 140, 365, this.espacio);
+            this.draw_de_casilleros_en_ctx(0,0, this.ctx, this.suma_x, this.suma_y, 140, 420, this.espacio);
             this.inicializado = true;
         }
         this.draw_hints();
     }
 
     draw_hints(){
-        let x = 355;
+        let x = 410;
         for(let c = 0; c < this.colum_max; c++){
             this.ctx.beginPath();
             this.ctx.arc(x, 40, 35, 0, 2* Math.PI);
             this.draw_image_hints(x);
             this.ctx.closePath();
-            x=x+90;
+            x=x+85;
         }
     }
 

@@ -16,8 +16,8 @@ function load_main(){
     let radio,espacio,suma_x,suma_y;
     //Determinamos segun lo "elegido por el ususario" los tamaños de la ficha, espacios entre ellas para dibujarlas en el tablero sin agrandar el tablero
     if(opcion_cantidad_linea == 4){
-        radio = 40;
-        espacio = 15;
+        radio = 35;
+        espacio = 8;
         suma_x = 75;
         suma_y = 75;
     }else if(opcion_cantidad_linea == 5){
@@ -37,8 +37,8 @@ function load_main(){
     let cant_fichas_jugador = (filas_tablero*columnas_tablero)/2/*cantidad_fichas(opcion_cantidad_linea, filas_tablero, columnas_tablero)*/;
     let img_seleccionada;
     let press_ficha_j1,press_ficha_j2=false;
-    let data_width_tablero = 670;
-    let data_height_tablero = 570;
+    let data_width_tablero = 640;
+    let data_height_tablero = 530;
     //Instanciamos un tablero y le pasamos los valores para sus atributos
     var tablero = new Tablero(ctx, "../TP3/uploads/tablero_1.jpg", columnas_tablero, filas_tablero, radio, espacio, data_width_tablero, data_height_tablero, suma_x, suma_y);
     //Creamos e iniciamos la matriz del tablero
@@ -48,7 +48,7 @@ function load_main(){
     //Cargamos los arreglos de fichas para los jugadores en la vista, con obj Ficha
     cargar_grupos_fichas(cant_fichas_jugador, ctx, jugador1, jugador2);
     //Dibujamos las Fichas para que los jugadores arrastren luego, segun la cantidad calculada anteriormente
-    dibujar_fichas_jugador(jugador1,75);
+    dibujar_fichas_jugador(jugador1,280);
     dibujar_fichas_jugador(jugador2,1100);
     /******************************************************************************** */
     canvas.addEventListener('dragover', function(ev){
@@ -102,8 +102,15 @@ function load_main(){
                 //Le modificamos las coordenadas a la Ficha seleccionada para que se mueva
                 ficha_seleccionada.setCoordenadaX(data.x);
                 ficha_seleccionada.setCoordenadaY(data.y);
-                clearCanvas(ctx);//Reseteamos TODO el canvas para que no quede el "camino de copias" o rastro del movimiento
-                tablero.draw();//dibujamos tablero
+                if(tablero.isPointInside(data.x, data.y)){
+                    clearTablero(ctx);
+                    tablero.draw();
+                }else{
+                    clearCanvas(ctx);//Reseteamos TODO el canvas para que no quede el "camino de copias" o rastro del movimiento
+                    tablero.draw();//dibujamos tablero
+                    dibujar_fichas_jugador(jugador1,280);
+                    dibujar_fichas_jugador(jugador2,1100);
+                }
                 ficha_seleccionada.draw_image();//Dibujamos la ficha seleccionada
             }
         }
@@ -125,14 +132,14 @@ function load_main(){
                 comenzar_animacion(ficha_seleccionada, data.x, data.y,ctx,tablero,jugador1,jugador2);
                 //Revisamos si la ficha seleccionada es del grupo del jugador 1 o 2 para eliminar una del array de fichas del mismo
                 if(press_ficha_j1){
-                    jugador1.slice(pos_ficha, 1);
+                    jugador1.splice(pos_ficha, 1);
                 }else if(press_ficha_j2){
-                    jugador2.slice(pos_ficha, 1);
+                    jugador2.splice(pos_ficha, 1);
                 }
                 //chequear si existe ganador en esta ronda...
-                if(tablero.hay_ganador()){
+                /*if(tablero.hay_ganador()){
                     //no llegue
-                }
+                }*/
             }else{
                 div_mensaje.classList.remove('no-visible');
                 div_mensaje.classList.add('visible');
@@ -152,7 +159,7 @@ function load_main(){
             clearCanvas(ctx);
             tablero.draw();
             //Dibujamos grupos en el canvas (anteriormente reseteado) y con una menos por la eliminacion anterior
-            dibujar_fichas_jugador(jugador1,75);
+            dibujar_fichas_jugador(jugador1,280);
             dibujar_fichas_jugador(jugador2,1100);
             
            // tablero.recorrer_matriz(); //OKprueba de que setea bien los valores en la matriz para chequear ganador luego con metodos del tablero
@@ -168,26 +175,18 @@ function load_main(){
      * */
     function dibujar_fichas_jugador(grupo_fichas,medidaX){
         let posX = medidaX;
-        let posY = 60;
+        let posY = 400;
         for(let i = 0; i < grupo_fichas.length; i++){
             grupo_fichas[i].setCoordenadaX(posX);
             grupo_fichas[i].setCoordenadaY(posY);
-            grupo_fichas[i].draw_image();
+            grupo_fichas[i].draw();
 
-            if(i > 0){
-                if(i%3==0){
-                    posY = posY+60;
-                    if(medidaX>100){
-                        posX=1020;
-                    }else{
-                        posX = 0;
-                    }
-                }
-                posX = posX+80;
-            }else{
-                posX = medidaX;
-            }
+            posY = posY-5;
         }
+        grupo_fichas[grupo_fichas.length-1].setCoordenadaX(posX);
+        grupo_fichas[grupo_fichas.length-1].setCoordenadaY(400-(5*grupo_fichas.length));
+        grupo_fichas[grupo_fichas.length-1].draw();
+        grupo_fichas[grupo_fichas.length-1].draw_image();
     }
     /***
      * Funciones para la animacion de caida en gravedad de la ficha en el tablero.
@@ -199,20 +198,20 @@ function load_main(){
     let interval;
     function comenzar_animacion(ficha_seleccionada, x, y, ctx,tablero,j1,j2){
         yy = y;
-        interval = setInterval(gravedad,1,ficha_seleccionada,x,ctx,tablero,j1,j2);
+        interval = setInterval(gravedad,60,ficha_seleccionada,x,ctx,tablero,j1,j2);
     }
     function gravedad(ficha_seleccionada,x, ctx,tablero,j1,j2){
         if(yy<570){
-            clearCanvas(ctx);
-            tablero.draw();
-            dibujar_fichas_jugador(j1,75);
-            dibujar_fichas_jugador(j2,1100);
             ficha_seleccionada.setCoordenadaX(x);
             ficha_seleccionada.setCoordenadaY(yy);
+            clearTablero(ctx);
             ficha_seleccionada.draw_image();
+            tablero.draw();
             yy+=50;
         }else{
             stop_interval();
+            clearTablero(ctx);
+            tablero.draw();
         }
     }
     function stop_interval(){
@@ -222,7 +221,7 @@ function load_main(){
         ctx.clearRect(0, 0, 1660, 755);
     }
     function clearTablero(ctx){
-        ctx.clearRect(400, 80, 1600, 760);
+        ctx.clearRect(335, 80, 670, 530);
     }
     function drag(ev) {
         ev.dataTransfer.setData("text", ev.target.id);
@@ -260,7 +259,7 @@ function load_main(){
     }*/
     function cargar_grupos_fichas(cant_fichas_jugador, ctx, jugador1, jugador2){
         for(let o = 0; o < cant_fichas_jugador*2; o++){
-            let ficha = new Ficha(40, "", ctx, "white", 0, false);
+            let ficha = new Ficha(35, "", ctx, "white", 0, false);
             if(o%2==0){
                 ficha.setImage("../TP3/uploads/fichaAngel.svg");
                 ficha.setJugador(1);

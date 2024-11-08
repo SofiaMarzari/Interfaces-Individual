@@ -16,14 +16,14 @@ class Ficha{
 
 
     draw_image(){
-        this.ctx.beginPath();
-        this.ctx.arc(this.coordX, this.coordY, this.r, 0, 2 * Math.PI);//r=40
+       /* this.ctx.beginPath();
+        this.ctx.arc(this.coordX, this.coordY, this.r, 0, 2 * Math.PI);*/
         /*this.ctx.fillStyle = this.fill;
         this.ctx.fill();
         this.ctx.strokeStyle = "black";
         this.ctx.lineWidth = 1;
         this.ctx.stroke();*/
-        this.ctx.closePath();
+       /* this.ctx.closePath();*/
         if(this.img != ""){
             this.image = new Image();
             this.image.src = this.image_src;
@@ -38,7 +38,10 @@ class Ficha{
         this.ctx.beginPath();
         this.ctx.arc(this.coordX, this.coordY, this.r, 0, 2 * Math.PI);
         this.ctx.fillStyle = this.fill;
-        this.ctx.fill();
+        this.ctx.fill(); 
+        this.ctx.strokeStyle = "black";
+        this.ctx.lineWidth = 1;
+        this.ctx.stroke();
         this.ctx.closePath();
     }
 
