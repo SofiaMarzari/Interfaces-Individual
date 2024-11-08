@@ -48,7 +48,7 @@ function load_main(){
     //Cargamos los arreglos de fichas para los jugadores en la vista, con obj Ficha
     cargar_grupos_fichas(cant_fichas_jugador, ctx, jugador1, jugador2);
     //Dibujamos las Fichas para que los jugadores arrastren luego, segun la cantidad calculada anteriormente
-    dibujar_fichas_jugador(jugador1,280);
+    dibujar_fichas_jugador(jugador1,140);
     dibujar_fichas_jugador(jugador2,1100);
     /******************************************************************************** */
     canvas.addEventListener('dragover', function(ev){
@@ -108,7 +108,7 @@ function load_main(){
                 }else{
                     clearCanvas(ctx);//Reseteamos TODO el canvas para que no quede el "camino de copias" o rastro del movimiento
                     tablero.draw();//dibujamos tablero
-                    dibujar_fichas_jugador(jugador1,280);
+                    dibujar_fichas_jugador(jugador1,140);
                     dibujar_fichas_jugador(jugador2,1100);
                     //Le modificamos las coordenadas a la Ficha seleccionada para que se mueva
                     ficha_seleccionada.setCoordenadaX(data.x);
@@ -156,7 +156,7 @@ function load_main(){
             clearCanvas(ctx);
             tablero.draw();
             //Dibujamos grupos en el canvas (anteriormente reseteado) y con una menos por la eliminacion anterior
-            dibujar_fichas_jugador(jugador1,280);
+            dibujar_fichas_jugador(jugador1,140);
             dibujar_fichas_jugador(jugador2,1100);
             
            // tablero.recorrer_matriz(); //OKprueba de que setea bien los valores en la matriz para chequear ganador luego con metodos del tablero

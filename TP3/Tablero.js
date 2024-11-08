@@ -20,7 +20,7 @@ class Tablero{
         this.inicializado = false;
         this.width_tablero = w;
         this.height_tablero = h;
-        this.inicio_draw_x = 350;
+        this.inicio_draw_x =280;
         this.inicio_draw_y = 80;
     }
 
@@ -119,22 +119,22 @@ class Tablero{
     draw(){
         this.ctx.drawImage(this.imagen, this.inicio_draw_x,this.inicio_draw_y, this.width_tablero,this.height_tablero);
         if(this.inicializado){
-            this.draw_de_casilleros_en_ctx(0,0, this.ctx, this.suma_x, this.suma_y, 140, 420, this.espacio);
+            this.draw_de_casilleros_en_ctx(0,0, this.ctx, this.suma_x, this.suma_y, 140, 350, this.espacio);
         }else{
-            this.draw_de_casilleros_en_ctx(0,0, this.ctx, this.suma_x, this.suma_y, 140, 420, this.espacio);
+            this.draw_de_casilleros_en_ctx(0,0, this.ctx, this.suma_x, this.suma_y, 140, 350, this.espacio);
             this.inicializado = true;
         }
         this.draw_hints();
     }
 
     draw_hints(){
-        let x = 410;
+        let x = 340;
         for(let c = 0; c < this.colum_max; c++){
             this.ctx.beginPath();
             this.ctx.arc(x, 40, 35, 0, 2* Math.PI);
             this.draw_image_hints(x);
             this.ctx.closePath();
-            x=x+85;
+            x=x+83;
         }
     }
 
@@ -142,24 +142,6 @@ class Tablero{
         this.ctx.drawImage( this.image_hint, x-30, 40-30, 30*2, 30*2);
     }
 
-    /*draw_ficha(ctx2, coord_x, coord_y, img){
-        ctx2.beginPath();
-        ctx2.arc(coord_x, coord_y, this.r, 0, 2 * Math.PI);
-        ctx2.fillStyle = "white";
-        ctx2.fill();
-        ctx2.strokeStyle = "black";
-        ctx2.lineWidth = 1;
-        ctx2.stroke();
-        ctx2.closePath();
-        let image = new Image();
-        image.src = img;
-        image.onload = function(){
-            ctx2.drawImage(image,coord_x-this.r,coord_y-this.r, this.r*2, this.r*2);
-        }
-    }*/
-    /*draw_casillero_vacio(coord_x, coord_y, fill){
-
-    }*/
    /*
    *Dibuja lo que contenga su matriz.
    *Si son fichas del contorno comenzaran a dibujarse mas lejos del contorno que el espacio entre ellas, 

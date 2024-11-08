@@ -35,7 +35,7 @@ class Ficha{
         this.ctx.arc(this.coordX, this.coordY, this.r, 0, 2 * Math.PI);
         this.ctx.fillStyle = this.fill;
         this.ctx.fill(); 
-        this.ctx.strokeStyle = "black";
+        this.ctx.strokeStyle = "grey";
         this.ctx.lineWidth = 1;
         this.ctx.stroke();
         this.ctx.closePath();
