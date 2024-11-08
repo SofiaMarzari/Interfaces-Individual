@@ -13,6 +13,9 @@ class Tablero{
         this.imagen.onload = () => {
             this.draw();
         }
+        this.image_hint = new Image();
+        this.image_hint.src = "../TP3/uploads/flecha_hint.png";
+        this.image_hint.onload = () => {}
         this.matriz;
         this.inicializado = false;
         this.width_tablero = w;
@@ -136,11 +139,7 @@ class Tablero{
     }
 
     draw_image_hints(x){
-        let image_hint = new Image();
-        image_hint.src = "../TP3/uploads/flecha_hint.png";
-        image_hint.onload = () => {
-            this.ctx.drawImage(image_hint, x-30, 40-30, 30*2, 30*2);
-        }
+        this.ctx.drawImage( this.image_hint, x-30, 40-30, 30*2, 30*2);
     }
 
     /*draw_ficha(ctx2, coord_x, coord_y, img){

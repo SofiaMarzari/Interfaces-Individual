@@ -25,11 +25,7 @@ class Ficha{
         this.ctx.stroke();*/
        /* this.ctx.closePath();*/
         if(this.img != ""){
-            this.image = new Image();
-            this.image.src = this.image_src;
-            this.image.onload = () => {
-                this.ctx.drawImage(this.image,this.coordX-this.r,this.coordY-this.r, this.r*2, this.r*2);
-            }
+            this.ctx.drawImage(this.image,this.coordX-this.r,this.coordY-this.r, this.r*2, this.r*2);
         }
     
     }
@@ -65,6 +61,11 @@ class Ficha{
     }
     setImage(img){
         this.image_src = img;
+        this.image = new Image();
+        this.image.src = this.image_src;
+        this.image.onload = () => {
+            this.ctx.drawImage(this.image,this.coordX-this.r,this.coordY-this.r, this.r*2, this.r*2);
+        }
     }
     getImage(){
         return this.image_src;
@@ -86,5 +87,11 @@ class Ficha{
     }
     setValor(v){
         this.valor = v;
+    }
+    getFill(){
+        return this.fill;
+    }
+    setFill(fill){
+        this.fill = fill;
     }
 }
