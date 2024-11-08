@@ -15,34 +15,58 @@ class Tablero{
         }
         this.matriz;
         this.inicializado = false;
-        this.width_tablero = w/*760 */;
-        this.height_tablero = h/*670*/;
-        this.inicio_draw_x = 300;
+        this.width_tablero = w;
+        this.height_tablero = h;
+        this.inicio_draw_x = 350;
         this.inicio_draw_y = 80;
-       //this.inicializar_matriz();
     }
 
-    cargar_ficha_en_tablero(x, y, img_ficha){
-        //buscar casillero en matriz que tenga la posicion (mas o menos) pasadas (coorresponden al mouse)
-        let pos_column = this.buscar_columna_de_pos_actual(x, y);
-        this.dibujar_ultimo_casillero_disponible_en_pos(pos_column, img_ficha);
+    isPointInside(mouse_x, mouse_y){
+        let rango_x = ((mouse_x > (this.inicio_draw_x+15)) && (mouse_x < ((this.inicio_draw_x + this.width_tablero)-15)));
+        let rango_y = ((mouse_y > (this.inicio_draw_y+15)) && (mouse_y < ((this.inicio_draw_y + this.height_tablero)-15)));
+        if(rango_x && rango_y){//la ficha esta dentro del tablero
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    cargar_ficha_en_tablero(x, y, ficha_seleccionada){//Recibimos coordenada del mouse en x, en y, y el obj Ficha seleccionado
+        let img_ficha = ficha_seleccionada.getImage();
+        let jugador = ficha_seleccionada.getJugador();
+        let pos_column = this.buscar_columna_de_pos_actual(x, y);//Busco en que columna se debe dibujar la Ficha, respecto a la posicion del mouse
+        if(pos_column.colum != -1){
+            this.dibujar_ultimo_casillero_disponible_en_pos(pos_column.colum, img_ficha, jugador);//Dibujo la ficha
+            return true;
+        }else{
+            return false;
+        }
     }
 
     hay_ganador(){
 
     }
-
+    /**Si las coordenadas del casillero actual se ajustan a la posicion del mouse, estoy en la columna donde se dibujara, la retorno**/
     buscar_columna_de_pos_actual(posX, posY){
         for(let fila = 0; fila < this.fila_max; fila++){
             for(let colum = 0; colum < this.colum_max; colum++){
                 if(this.matriz[fila][colum].isPointInside(posX, posY)){
-                    return colum;
+                    return {'colum':colum, 'valido':true};
+                }else if(colum == this.colum_max-1){
+                    return {'colum':-1, 'valido':false};
+                }else if(posX=((this.r*2)*colum)){
+                    return {'colum':colum, 'valido':true};
                 }
             }
         }
     }
-
-    dibujar_ultimo_casillero_disponible_en_pos(colum, img_ficha){
+    /*Encuentra el casillero vacio al final mas proximo.
+    *Luego frena para que no dibuje de mas.
+    *Le setea la imagen de la ficha seleccionada Al casillero donde debe ir.
+    *Le carga el jugador.
+    *Dibuja la Ficha con su metodo de dibujar imagen.
+    El Casillero ahora actua como Ficha*///Solucion rapida
+    dibujar_ultimo_casillero_disponible_en_pos(colum, img_ficha, jugador){
         let freno = false;
         for(let fila = this.fila_max-1; fila >= 0; fila--){
             let casillero = this.matriz[fila][colum];
@@ -53,6 +77,7 @@ class Tablero{
                         casillero.draw_image();
                         casillero.setCasillero();
                         freno = true;
+                        casillero.setJugador(jugador);
                     }
                 }
             }
@@ -60,18 +85,6 @@ class Tablero{
         }
     }
 
-   /* buscar_casillero_y_dibujar_ficha(posX, posY){
-        for(let fila = 0; fila < 7; fila++){
-            this.matriz[fila].forEach(function(casillero){
-              if(casillero.isPointInside(posX, posY)){
-                    console.log(casillero);
-                    //this.dibujar_ultimo_casillero_disponible(casillero);
-                    casillero.setImage("fichaAngel.svg");
-                    casillero.draw_image();
-                }
-            });
-        }
-    }*/
     inicializar_matriz(){
         this.matriz = [];
         for(let f = 0; f < this.fila_max; f++){
@@ -85,30 +98,51 @@ class Tablero{
    
     recorrer_matriz(){
         //console.log(this.matriz); completa
-        for(let fila = 0; fila < 7; fila++){
+        for(let fila = 0; fila < this.fila_max; fila++){
             //console.log(this.matriz[fila]);
             let elem_filas = "";
-            this.matriz[fila].forEach(function(casillero){
+            this.matriz[fila].forEach(function(casillero){//sin forEach
                 //console.log("Valores en columnas de la fila "+fila+":");
                 //console.log(casillero);
                 //elem_filas = elem_filas+"("+casillero.getCoordenadaX()+", "+casillero.getCoordenadaY()+")"+"; ";
-                elem_filas = elem_filas+"("+casillero.getImage()+")"+"; ";
+                elem_filas = elem_filas+"("+casillero.getJugador()+")"+"; ";
             });
             console.log("Valores en columnas de la fila "+fila+":");
             console.log(elem_filas);
         }
     }
-
+    /*
+     *El Tablero se dibuja primero y luego, si es la primera vez que se carga/dibuja guardara dicho estado */
     draw(){
-            this.ctx.drawImage(this.imagen, this.inicio_draw_x,this.inicio_draw_y, this.width_tablero,this.height_tablero);
-            if(this.inicializado){
-                this.draw_de_casilleros_en_ctx(0,0, this.ctx, this.suma_x, this.suma_y, 140, 365, this.espacio);
-            }else{
-                this.draw_de_casilleros_en_ctx(0,0, this.ctx, this.suma_x, this.suma_y, 140, 365, this.espacio);
-                this.inicializado = true;
-            }
-            
+        this.ctx.drawImage(this.imagen, this.inicio_draw_x,this.inicio_draw_y, this.width_tablero,this.height_tablero);
+        if(this.inicializado){
+            this.draw_de_casilleros_en_ctx(0,0, this.ctx, this.suma_x, this.suma_y, 140, 420, this.espacio);
+        }else{
+            this.draw_de_casilleros_en_ctx(0,0, this.ctx, this.suma_x, this.suma_y, 140, 420, this.espacio);
+            this.inicializado = true;
+        }
+        this.draw_hints();
     }
+
+    draw_hints(){
+        let x = 410;
+        for(let c = 0; c < this.colum_max; c++){
+            this.ctx.beginPath();
+            this.ctx.arc(x, 40, 35, 0, 2* Math.PI);
+            this.draw_image_hints(x);
+            this.ctx.closePath();
+            x=x+85;
+        }
+    }
+
+    draw_image_hints(x){
+        let image_hint = new Image();
+        image_hint.src = "../TP3/uploads/flecha_hint.png";
+        image_hint.onload = () => {
+            this.ctx.drawImage(image_hint, x-30, 40-30, 30*2, 30*2);
+        }
+    }
+
     /*draw_ficha(ctx2, coord_x, coord_y, img){
         ctx2.beginPath();
         ctx2.arc(coord_x, coord_y, this.r, 0, 2 * Math.PI);
@@ -127,6 +161,13 @@ class Tablero{
     /*draw_casillero_vacio(coord_x, coord_y, fill){
 
     }*/
+   /*
+   *Dibuja lo que contenga su matriz.
+   *Si son fichas del contorno comenzaran a dibujarse mas lejos del contorno que el espacio entre ellas, 
+   *para obtener efecto de padding del tablero.
+   *Si el tablero es la primera vez que se carga debe llenarse solo de Casilleros, que van vacios, en blanco.
+   *Sino, revisa cada vez si el elemento actual no es un casillero por ende debe llamar al draw imagen y no fallara, sino al draw comun
+   *que dibuja la ficha vacia*/
     draw_de_casilleros_en_ctx(x_ini, y_ini, ctx, suma_x, suma_y, suma_inicio_y, suma_inicio_x, espacio){
         let cont_x = x_ini;
         let cont_y = y_ini;
@@ -151,14 +192,14 @@ class Tablero{
                     if(!this.matriz[fila][colum].getCasillero()){
                         this.matriz[fila][colum].draw_image();
                     }else{
-                        let casillero = new Casillero(this.r, ctx);
+                        let casillero = new Ficha(this.r, "", ctx, "white", 0, true);
                         casillero.setCoordenadaX(cont_x);
                         casillero.setCoordenadaY(cont_y);
                         casillero.draw();
                         this.matriz[fila][colum] = casillero;
                     }
                 }else{
-                    let casillero = new Casillero(this.r, ctx);
+                    let casillero = new Ficha(this.r,"", ctx, "white", 0, true);
                     casillero.setCoordenadaX(cont_x);
                     casillero.setCoordenadaY(cont_y);
                     casillero.draw();
