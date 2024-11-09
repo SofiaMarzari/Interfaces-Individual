@@ -48,7 +48,7 @@ function load_main(){
     //Cargamos los arreglos de fichas para los jugadores en la vista, con obj Ficha
     cargar_grupos_fichas(cant_fichas_jugador, ctx, jugador1, jugador2);
     //Dibujamos las Fichas para que los jugadores arrastren luego, segun la cantidad calculada anteriormente
-    dibujar_fichas_jugador(jugador1,280);
+    dibujar_fichas_jugador(jugador1,140);
     dibujar_fichas_jugador(jugador2,1100);
     /******************************************************************************** */
     canvas.addEventListener('dragover', function(ev){
@@ -99,20 +99,23 @@ function load_main(){
                 div_mensaje.classList.remove('visible');
                 div_mensaje.classList.add('no-visible');
                 let data = leer_mouse(ev, canvas);//Pedimos coordenadas del mouse actualmente mientras se presiona
-                //Le modificamos las coordenadas a la Ficha seleccionada para que se mueva
-                ficha_seleccionada.setCoordenadaX(data.x);
-                ficha_seleccionada.setCoordenadaY(data.y);
                 if(tablero.isPointInside(data.x, data.y)){
                     clearTablero(ctx);
                     tablero.draw();
+                    //Le modificamos las coordenadas a la Ficha seleccionada para que se mueva
+                    ficha_seleccionada.setCoordenadaX(data.x);
+                    ficha_seleccionada.setCoordenadaY(data.y);
                 }else{
                     clearCanvas(ctx);//Reseteamos TODO el canvas para que no quede el "camino de copias" o rastro del movimiento
                     tablero.draw();//dibujamos tablero
-                    dibujar_fichas_jugador(jugador1,280);
+                    dibujar_fichas_jugador(jugador1,140);
                     dibujar_fichas_jugador(jugador2,1100);
-                }
-                ficha_seleccionada.draw_image();//Dibujamos la ficha seleccionada
+                    //Le modificamos las coordenadas a la Ficha seleccionada para que se mueva
+                    ficha_seleccionada.setCoordenadaX(data.x);
+                    ficha_seleccionada.setCoordenadaY(data.y);
+                } 
             }
+            ficha_seleccionada.draw_image();//Dibujamos la ficha seleccionada
         }
     });
     /**Se ejecuta cuando soltamos el mouse.. **/
@@ -121,15 +124,9 @@ function load_main(){
         //Si estabamos presionando una ficha...
         if(press){
             let data = leer_mouse(ev, canvas);//lee coordenadas del mouse actualmente, donde suelto la ficha (la ficha igualmente tiene esa ultimas coordenadas seteadas)
-            /*
-            if(press_ficha_j1){
-                img_seleccionada = jugador1[0].getImage();
-            }else if(press_ficha_j2){
-                img_seleccionada = jugador2[0].getImage();
-            }*/
             if(tablero.cargar_ficha_en_tablero(data.x, data.y, ficha_seleccionada)){ //Dibujamos la ficha seleccionada en el tablero y pasamos data del mouse a dicho metodo
                 //Llamamos a la funcion que inicia la caida de la ficha en el tablero..
-                comenzar_animacion(ficha_seleccionada, data.x, data.y,ctx,tablero,jugador1,jugador2);
+                comenzar_animacion(ficha_seleccionada, data.x, data.y,ctx,tablero);
                 //Revisamos si la ficha seleccionada es del grupo del jugador 1 o 2 para eliminar una del array de fichas del mismo
                 if(press_ficha_j1){
                     jugador1.splice(pos_ficha, 1);
@@ -159,7 +156,7 @@ function load_main(){
             clearCanvas(ctx);
             tablero.draw();
             //Dibujamos grupos en el canvas (anteriormente reseteado) y con una menos por la eliminacion anterior
-            dibujar_fichas_jugador(jugador1,280);
+            dibujar_fichas_jugador(jugador1,140);
             dibujar_fichas_jugador(jugador2,1100);
             
            // tablero.recorrer_matriz(); //OKprueba de que setea bien los valores en la matriz para chequear ganador luego con metodos del tablero
@@ -185,7 +182,7 @@ function load_main(){
         }
         grupo_fichas[grupo_fichas.length-1].setCoordenadaX(posX);
         grupo_fichas[grupo_fichas.length-1].setCoordenadaY(400-(5*grupo_fichas.length));
-        grupo_fichas[grupo_fichas.length-1].draw();
+       /* grupo_fichas[grupo_fichas.length-1].draw();*/
         grupo_fichas[grupo_fichas.length-1].draw_image();
     }
     /***
@@ -196,12 +193,13 @@ function load_main(){
     * */
     let yy =0;
     let interval;
-    function comenzar_animacion(ficha_seleccionada, x, y, ctx,tablero,j1,j2){
+    function comenzar_animacion(ficha_seleccionada, x, y, ctx,tablero){
         yy = y;
-        interval = setInterval(gravedad,60,ficha_seleccionada,x,ctx,tablero,j1,j2);
+        let cae_hasta = ficha_seleccionada.getCoordenadaX();
+        interval = setInterval(gravedad,60,ficha_seleccionada,x,ctx,tablero,cae_hasta);
     }
-    function gravedad(ficha_seleccionada,x, ctx,tablero,j1,j2){
-        if(yy<570){
+    function gravedad(ficha_seleccionada,x, ctx,tablero,cae_hasta){
+        if(yy<cae_hasta){
             ficha_seleccionada.setCoordenadaX(x);
             ficha_seleccionada.setCoordenadaY(yy);
             clearTablero(ctx);
@@ -221,7 +219,7 @@ function load_main(){
         ctx.clearRect(0, 0, 1660, 755);
     }
     function clearTablero(ctx){
-        ctx.clearRect(335, 80, 670, 530);
+        ctx.clearRect(280, 0, 640, 640);
     }
     function drag(ev) {
         ev.dataTransfer.setData("text", ev.target.id);
@@ -261,10 +259,12 @@ function load_main(){
         for(let o = 0; o < cant_fichas_jugador*2; o++){
             let ficha = new Ficha(35, "", ctx, "white", 0, false);
             if(o%2==0){
+                ficha.setFill("yellow");
                 ficha.setImage("../TP3/uploads/fichaAngel.svg");
                 ficha.setJugador(1);
                 jugador1.push(ficha);
             }else{
+                ficha.setFill("red");
                 ficha.setImage("../TP3/uploads/fichaDemonio.svg");
                 ficha.setJugador(2);
                 jugador2.push(ficha);
