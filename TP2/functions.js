@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
         detalle_perfil_avatar.classList.add("no-visible");
     });
 
-    loadLogin();
+    loadLogin();    
 });
 let obj_categorias =
 [
@@ -486,6 +486,10 @@ function loadJuegoEnEjecucion() {
                         document.querySelectorAll(".btn_carrusel_sig").forEach(function(btn) {
                             btn.addEventListener('click', translateFunctionSig);
                         });
+                        let div_mensaje = document.getElementById('div-mensaje-juego');
+                        div_mensaje.classList.add('no-visible');
+                        let div_timer = document.getElementById('timer-div');
+                        div_timer.classList.add('no-visible');
                         document.getElementById('jugar').addEventListener('click', loadJuego);
                     }
                 )
@@ -508,6 +512,7 @@ function loadJuego() {
                     function(h) {
                         container_en_ejecucion.innerHTML = h;
                         document.getElementById('contenedor_en_ejecucion').classList.add("container_en_ejecucion_activo");
+                        document.getElementById('timer-div').classList.remove('no-visible');
                         load_main();
                     }
                 )

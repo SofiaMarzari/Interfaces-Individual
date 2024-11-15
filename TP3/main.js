@@ -124,9 +124,14 @@ function load_main(){
         //Si estabamos presionando una ficha...
         if(press){
             let data = leer_mouse(ev, canvas);//lee coordenadas del mouse actualmente, donde suelto la ficha (la ficha igualmente tiene esa ultimas coordenadas seteadas)
-            if(tablero.cargar_ficha_en_tablero(data.x, data.y, ficha_seleccionada)){ //Dibujamos la ficha seleccionada en el tablero y pasamos data del mouse a dicho metodo
+            let ubicacion_de_ficha = tablero.ubicacion_de_ficha(data.x, data.y);
+            if(ubicacion_de_ficha.estado){ //Dibujamos la ficha seleccionada en el tablero y pasamos data del mouse a dicho metodo
+                let casillero_disp = tablero.get_casillero_disponible_en_colum(ubicacion_de_ficha.colum);
+                ficha_seleccionada.setCoordenadaX(casillero_disp.getCoordenadaX());
+                ficha_seleccionada.setCoordenadaY(casillero_disp.getCoordenadaY());
                 //Llamamos a la funcion que inicia la caida de la ficha en el tablero..
                 comenzar_animacion(ficha_seleccionada, data.x, data.y,ctx,tablero);
+                tablero.dibujar_casillero(casillero_disp, ficha_seleccionada);
                 //Revisamos si la ficha seleccionada es del grupo del jugador 1 o 2 para eliminar una del array de fichas del mismo
                 if(press_ficha_j1){
                     jugador1.splice(pos_ficha, 1);
@@ -195,16 +200,16 @@ function load_main(){
     let interval;
     function comenzar_animacion(ficha_seleccionada, x, y, ctx,tablero){
         yy = y;
-        let cae_hasta = ficha_seleccionada.getCoordenadaX();
+        let cae_hasta = ficha_seleccionada.getCoordenadaY();
         interval = setInterval(gravedad,60,ficha_seleccionada,x,ctx,tablero,cae_hasta);
     }
     function gravedad(ficha_seleccionada,x, ctx,tablero,cae_hasta){
         if(yy<cae_hasta){
+            clearTablero(ctx);
+            tablero.draw();
             ficha_seleccionada.setCoordenadaX(x);
             ficha_seleccionada.setCoordenadaY(yy);
-            clearTablero(ctx);
             ficha_seleccionada.draw_image();
-            tablero.draw();
             yy+=50;
         }else{
             stop_interval();
