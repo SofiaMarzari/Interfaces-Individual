@@ -35,15 +35,13 @@ class Tablero{
         }
     }
 
-    cargar_ficha_en_tablero(x, y, ficha_seleccionada){//Recibimos coordenada del mouse en x, en y, y el obj Ficha seleccionado
-        let img_ficha = ficha_seleccionada.getImage();
-        let jugador = ficha_seleccionada.getJugador();
+    ubicacion_de_ficha(x, y){//Recibimos coordenada del mouse en x, en y, y el obj Ficha seleccionado
         let pos_column = this.buscar_columna_de_pos_actual(x, y);//Busco en que columna se debe dibujar la Ficha, respecto a la posicion del mouse
         if(pos_column.colum != -1){
-            this.dibujar_ultimo_casillero_disponible_en_pos(pos_column.colum, img_ficha, jugador);//Dibujo la ficha
-            return true;
+            //this.dibujar_ultimo_casillero_disponible_en_pos(pos_column.colum, img_ficha, jugador);//Dibujo la ficha
+            return {'colum':pos_column.colum, 'estado':true};
         }else{
-            return false;
+            return {'colum':-1, 'estado':false};
         }
     }
 
@@ -79,22 +77,21 @@ class Tablero{
     *Le carga el jugador.
     *Dibuja la Ficha con su metodo de dibujar imagen.
     El Casillero ahora actua como Ficha*///Solucion rapida
-    dibujar_ultimo_casillero_disponible_en_pos(colum, img_ficha, jugador){
-        let freno = false;
+    dibujar_casillero(casillero, ficha_seleccionada){
+        casillero.setImage(ficha_seleccionada.getImage());
+        casillero.draw_image();
+        casillero.setCasillero();
+        casillero.setJugador(ficha_seleccionada.getCasillero());
+    }
+
+    get_casillero_disponible_en_colum(colum){
         for(let fila = this.fila_max-1; fila >= 0; fila--){
             let casillero = this.matriz[fila][colum];
-            if(!freno){
                 if(casillero){
                     if(casillero.getCasillero()){
-                        casillero.setImage(img_ficha);
-                        casillero.draw_image();
-                        casillero.setCasillero();
-                        freno = true;
-                        casillero.setJugador(jugador);
+                       return casillero;
                     }
                 }
-            }
-            
         }
     }
 
