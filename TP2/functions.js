@@ -490,7 +490,49 @@ function loadJuegoEnEjecucion() {
                         div_mensaje.classList.add('no-visible');
                         let div_timer = document.getElementById('timer-div');
                         div_timer.classList.add('no-visible');
-                        document.getElementById('jugar').addEventListener('click', loadJuego);
+                        document.getElementById('jugar').addEventListener('click', loadConfigJuego);
+                    }
+                )
+            } else {
+                container_AJAX.innerHTML = '<h1>404 - Not Found!</h1>';
+            }
+        }
+
+    ).catch(function(response) {
+        container_AJAX.innerHTML = '<h1>Error 505</h1>';
+    })
+}
+function loadConfigJuego() {
+    let container_en_ejecucion = document.getElementById('contenedor_en_ejecucion');
+    fetch('../TP3/config_juego.html').then(
+
+        function(response) {
+            if (response.ok) {
+                response.text().then(
+                    function(h) {
+                        container_en_ejecucion.innerHTML = h;
+                        document.getElementById('contenedor_en_ejecucion').classList.add("container_en_ejecucion_activo");
+                        //Reset de inputs radio
+                        let tipo_juego = document.querySelectorAll('.tipo_ficha');
+                        for(let f = 0; f < tipo_juego.length; f++){
+                            tipo_juego[f].checked = false;
+                        }
+                        let data_img = document.getElementById('p-imagen-ficha-selec');
+                        //Esta atento al click sobre la imagen del grupo 1 para saber cual es la elegida y guardar el dato
+                        let img_muestrario_1 = document.querySelectorAll(".img_ficha_muestra_1");
+                        for(let y = 0; y < img_muestrario_1.length; y++){
+                            img_muestrario_1[y].addEventListener('click', function(){
+                            data_img.setAttribute('data-img-1', this.alt);
+                        });
+                        }
+                        //Esta atento al click sobre la imagen del grupo 2 para saber cual es la elegida y guardar el dato
+                        let img_muestrario_2 = document.querySelectorAll(".img_ficha_muestra_2");
+                        for(let y = 0; y < img_muestrario_2.length; y++){
+                            img_muestrario_2[y].addEventListener('click', function(){
+                            data_img.setAttribute('data-img-2', this.alt);
+                        });
+                        }
+                        document.getElementById('btn_comenzar_juego_form').addEventListener('click', loadJuego);
                     }
                 )
             } else {
@@ -510,10 +552,11 @@ function loadJuego() {
             if (response.ok) {
                 response.text().then(
                     function(h) {
+                        let datos = datos_config_juego();
                         container_en_ejecucion.innerHTML = h;
                         document.getElementById('contenedor_en_ejecucion').classList.add("container_en_ejecucion_activo");
                         document.getElementById('timer-div').classList.remove('no-visible');
-                        load_main();
+                        load_main(datos);
                     }
                 )
             } else {
@@ -524,6 +567,22 @@ function loadJuego() {
     ).catch(function(response) {
         container_AJAX.innerHTML = '<h1>Error 505</h1>';
     })
+}
+function datos_config_juego(){
+    let data_img = document.getElementById('p-imagen-ficha-selec');
+    let tipo_juego = document.querySelectorAll('.tipo_ficha');
+    //Al comenzar juego, verificar que imagen fue seleccionada para el jugador 1 y para el jugador 2
+    let ficha_jugador_1 = data_img.getAttribute('data-img-1');
+    let ficha_jugador_2 = data_img.getAttribute('data-img-2');
+    let tipo_de_juego;
+    //recorre inputs radio para verificar la seleccionada
+    for(let f = 0; f < tipo_juego.length; f++){
+        if(tipo_juego[f].checked){
+            tipo_de_juego = tipo_juego[f].value;
+        }
+    }
+
+    return {'img_ficha_j1':ficha_jugador_1,'img_ficha_j2':ficha_jugador_2,'tipo_juego_cantidad':tipo_de_juego};
 }
 
 document.getElementById('btn-home').addEventListener('click', loadHome);

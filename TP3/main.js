@@ -21,14 +21,15 @@
     let tablero;
     let val_time = 60;
     let turno = 1;
-    function load_main(){
+    function load_main(datosConfig){
+        console.log(datosConfig);
         canvas = document.getElementById('myCanvas');
         ctx = canvas.getContext("2d");
         div_mensaje = document.getElementById('div-mensaje-juego');
         timer_container = document.getElementById('timer-time');
         /**Inicia el juego, empieza a correr el timer.. */
         setInterval(correr_timer, 1000, timer_container);
-        
+        opcion_cantidad_linea = datosConfig.tipo_juego_cantidad;
         //Determinamos segun lo "elegido por el ususario" los tamaños de la ficha, espacios entre ellas para dibujarlas en el tablero sin agrandar el tablero
         if(opcion_cantidad_linea == 4){
             radio = 35;
@@ -54,7 +55,7 @@
         //Dibujamos el tablero
         tablero.draw();
         //Cargamos los arreglos de fichas para los jugadores en la vista, con obj Ficha
-        cargar_grupos_fichas(cant_fichas_jugador, ctx, jugador1, jugador2);
+        cargar_grupos_fichas(cant_fichas_jugador, ctx, jugador1, jugador2, datosConfig.img_ficha_j1, datosConfig.img_ficha_j2);
         //Dibujamos las Fichas para que los jugadores arrastren luego, segun la cantidad calculada anteriormente
         dibujar_fichas_jugador(jugador1,140);
         dibujar_fichas_jugador(jugador2,1100);
@@ -197,7 +198,7 @@
     }
     function stop_timer(){
         clearInterval(correr_timer);
-        reset_variables();
+       // reset_variables();
     }
     /***
      * Funcion para dibujar grupo de fichas en el canvas
@@ -289,17 +290,17 @@
         }
         return (filas_tablero*columnas_tablero)/2;
     }*/
-    function cargar_grupos_fichas(cant_fichas_jugador, ctx, jugador1, jugador2){
+    function cargar_grupos_fichas(cant_fichas_jugador, ctx, jugador1, jugador2, img_ficha_j1, img_ficha_j2){
         for(let o = 0; o < cant_fichas_jugador*2; o++){
             let ficha = new Ficha(35, "", ctx, "white", 0, false);
             if(o%2==0){
                 ficha.setFill("yellow");
-                ficha.setImage("../TP3/uploads/fichaAngel.svg");
+                ficha.setImage("../TP3/uploads/"+img_ficha_j1);
                 ficha.setJugador(1);
                 jugador1.push(ficha);
             }else{
                 ficha.setFill("red");
-                ficha.setImage("../TP3/uploads/fichaDemonio.svg");
+                ficha.setImage("../TP3/uploads/"+img_ficha_j2);
                 ficha.setJugador(2);
                 jugador2.push(ficha);
             }
