@@ -1349,6 +1349,7 @@ footer>section>h5 {
         width: 80px;
         margin-right: 20px;
         cursor: pointer;
+        border-radius: 80px;
       }
       .img_ficha_muestra_1:hover {
         position: relative;
@@ -1359,6 +1360,11 @@ footer>section>h5 {
         position: relative;
         animation-name: example;
         animation-duration: 1s;
+      }
+      .active{
+        background-color: #ff6f1c;
+        box-shadow: 0 0 10px #f31717, 0 0 20px #f31717, 0 0 20px #f31717;
+        color: #000000;
       }
       @keyframes example {
         0% {bottom:5px;}
@@ -1432,6 +1438,11 @@ footer>section>h5 {
         cursor: pointer;
         background-color: #FFD700;
         margin-top: 30px;
+        margin-left: 33%;
+    }
+    .fondo-sombra-click{
+        border-radius: 80px;
+
     }
     /***********************************/
     .caja1 {

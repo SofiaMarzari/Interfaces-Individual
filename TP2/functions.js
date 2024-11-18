@@ -528,6 +528,11 @@ function loadConfigJuego() {
                         for(let y = 0; y < img_muestrario_1.length; y++){
                             img_muestrario_1[y].addEventListener('click', function(){
                             data_img.setAttribute('data-img-1', this.alt);
+                            let img_muestrario_1 = document.querySelectorAll(".img_ficha_muestra_1");
+                            for(let y = 0; y < img_muestrario_1.length; y++){
+                                img_muestrario_1[y].classList.remove('active');
+                            }
+                            this.classList.add('active');
                         });
                         }
                         //Esta atento al click sobre la imagen del grupo 2 para saber cual es la elegida y guardar el dato
@@ -535,6 +540,11 @@ function loadConfigJuego() {
                         for(let y = 0; y < img_muestrario_2.length; y++){
                             img_muestrario_2[y].addEventListener('click', function(){
                             data_img.setAttribute('data-img-2', this.alt);
+                            let img_muestrario_2 = document.querySelectorAll(".img_ficha_muestra_2");
+                            for(let y = 0; y < img_muestrario_2.length; y++){
+                                img_muestrario_2[y].classList.remove('active');
+                            }
+                            this.classList.add('active');
                         });
                         }
                         document.getElementById('btn_comenzar_juego_form').addEventListener('click', loadJuego);

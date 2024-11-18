@@ -10,9 +10,11 @@
     /*Inicializando variables*/
     let jugador1 = [];
     let jugador2 = [];
+    let img_ficha_j1; 
+    let img_ficha_j2;
     let ficha_seleccionada = null;
     let press = false;
-    let opcion_cantidad_linea = 4; //default 4, deberia tomarse el valor de un select en la vista, para que el usuario elija, y sea dinamico
+    let opcion_cantidad_linea;
     let radio,espacio,suma_x,suma_y,espacio_hints;
     let pos_ficha,coordX_original, coordY_original;
     let filas_tablero;
@@ -26,6 +28,7 @@
     let timer_var_interval;
     let turno = 1;
     function load_main(datosConfig){
+        reset_variables();
         canvas = document.getElementById('myCanvas');
         ctx = canvas.getContext("2d");
         div_mensaje = document.getElementById('div-mensaje-juego');
@@ -34,9 +37,22 @@
         div_opacity = document.getElementById('div_opacity');
         div_mensaje_completo = document.getElementById('mensaje_completo_info');
         timer_container = document.getElementById('timer-time');
-        /**Inicia el juego, empieza a correr el timer.. */
         timer_var_interval = setInterval(correr_timer, 1000, timer_container);
-        opcion_cantidad_linea = parseInt(datosConfig.tipo_juego_cantidad);
+        if(datosConfig.tipo_juego_cantidad != undefined){
+            opcion_cantidad_linea = parseInt(datosConfig.tipo_juego_cantidad);
+        }else{
+            opcion_cantidad_linea = 4;
+        }
+        if(datosConfig.img_ficha_j1 != undefined){
+            img_ficha_j1 = datosConfig.img_ficha_j1;
+        }else{
+            img_ficha_j1 = "fichaAngel.svg";
+        }
+        if(datosConfig.img_ficha_j2 != undefined){
+            img_ficha_j2 = datosConfig.img_ficha_j2;
+        }else{
+            img_ficha_j2 = "fichaDemonio.svg";
+        }
         //Determinamos segun lo "elegido por el ususario" los tamaños de la ficha, espacios entre ellas para dibujarlas en el tablero sin agrandar el tablero
         if(opcion_cantidad_linea == 4){
             radio = 35;
@@ -73,7 +89,7 @@
         //Dibujamos el tablero
         tablero.draw();
         //Cargamos los arreglos de fichas para los jugadores en la vista, con obj Ficha
-        cargar_grupos_fichas(cant_fichas_jugador, ctx, jugador1, jugador2, datosConfig.img_ficha_j1, datosConfig.img_ficha_j2);
+        cargar_grupos_fichas(cant_fichas_jugador, ctx, jugador1, jugador2);
         //Dibujamos las Fichas para que los jugadores arrastren luego, segun la cantidad calculada anteriormente
         dibujar_fichas_jugador(jugador1,140);
         dibujar_fichas_jugador(jugador2,1100);
@@ -318,7 +334,7 @@
     
         return {'x':x_mouse, 'y':y_mouse};
     }
-    function cargar_grupos_fichas(cant_fichas_jugador, ctx, jugador1, jugador2, img_ficha_j1, img_ficha_j2){
+    function cargar_grupos_fichas(cant_fichas_jugador, ctx, jugador1, jugador2){
         for(let o = 0; o < cant_fichas_jugador*2; o++){
             let ficha = new Ficha(radio, "", ctx, "white", 0, false);
             if(o%2==0){
