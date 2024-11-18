@@ -1,0 +1,233 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.visible{
+    display: block;
+}
+.no-visible{
+    display: none;
+}
+/********************************* HEADER **********************************/
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: solid 2px red;
+    width: 1280px;
+}
+/********************************* fin - HEADER **********************************/
+/********************************* NAV **********************************/
+nav{
+    border: solid 2px blue;
+    width: 1280px;
+}
+
+/********************************* fin - NAV **********************************/
+/********************************* CONTAINER AJAX **********************************/
+#container-body{
+    border: solid 2px green;
+    width: 1280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/********************************* fin - CONTAINER AJAX **********************************/
+/********************************* SECTION INICIO **********************************/
+#section-inicio{
+    width: 1280px;
+    height: 959.305px;
+    background-image: url('./uploads/fondo.png');
+}
+/********************************* fin - SECTION INICIO **********************************/
+/********************************* SECTION MAS DIVERTIDA **********************************/
+#section-mas-divertida{
+    width: 1280px;
+    
+}
+#section-mas-divertida > .section-cards{
+    margin-top: 326px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 113px;
+}
+#section-mas-divertida > .section-cards >div >p{
+    color: #000;
+    font-family: Lato;
+    font-size: 20px;
+    width: 333px;
+    height: 218px;
+}
+/********************************* fin - SECTION MAS DIVERTIDA **********************************/
+/********************************* SECTION DESCARGA NUMBERS BLOCK **********************************/
+#section-descarga-numbers-block>.section-descarga-fondo{
+    position: absolute;
+    z-index: 1;
+}
+#section-descarga-numbers-block{
+    width: 100%;
+    height: 1157px;
+    position: relative;
+}
+#section-descarga-numbers-block>h6{
+    position: absolute;
+    z-index: 2;
+    color: #FFF;
+    text-align: center;
+    font-family: Lato;
+    font-size: 61.14px;
+    font-style: normal;
+    width: 950px;
+    height: 153px;
+    right: 170px;
+}
+#section-descarga-numbers-block>button{
+    position: absolute;
+    z-index: 2;
+    border-radius: 111px;
+    border: 8px solid #FFF;
+    background: #83C252;
+    box-shadow: 4px 5px 0px 0px #02187E;
+    width: 540px;
+    height: 66px;
+    font-family: Lato;
+    font-size: 31.14px;
+    font-style: normal;
+    font-weight: 400;
+    color: white;
+    bottom: 700px;
+    right: 380px;
+}
+#section-descarga-numbers-block>img{
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+}
+/********************************* fin - SECTION DESCARGA NUMBERS BLOCK **********************************/
+/********************************* SECTION MAS AMIGOS **********************************/
+#section-mas-amigos{
+    width: 1080px;
+}
+#section-mas-amigos>h3{
+    color: #000;
+    font-family: Lato;
+    font-size: 60px;
+    font-style: normal;
+    text-align: center;
+}
+#section-mas-amigos>div{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+#section-mas-amigos > div > .div-der,.div-izq{
+    width: 640px;
+}
+#section-mas-amigos > div > .div-izq{
+    text-align: center;
+}
+#section-mas-amigos > div > .div-der > article > p{
+    color: #000;
+    font-family: Lato;
+    font-size: 20px;
+    font-style: normal;
+}
+#section-mas-amigos > div > .div-der > article{
+    width: 467px;
+    margin-bottom: 267px;
+}
+/********************************* fin - SECTION MAS AMIGOS **********************************/
+/********************************* SECTION VIDEO HOME **********************************/
+#section-video-home{
+    width: 100%;
+}
+#section-video-home>img{
+    position: relative;
+    z-index: 3;
+}
+#section-video-home > p{
+    color: #FFF;
+    font-family: Lato;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 600;
+    width: 802px;
+    position: relative;
+    z-index: 3;
+}
+/********************************* fin - SECTION VIDEO HOME **********************************/
+/********************************* SECTION EXPERIENCIA 3D **********************************/
+#section-experiencia-3d{
+    border: solid 2px rgb(128, 105, 0);
+    width: 1080px;
+}
+/********************************* fin - SECTION EXPERIENCIA 3D **********************************/
+/********************************* SECTION NUMBERS COLORES **********************************/
+#section-numbers-colores{
+    width: 100%;
+    height: 729px;
+}
+#section-numbers-colores > div{
+    width: 100%;
+    height: 364.5px;
+    display: flex;
+    flex-direction: row;
+}
+#section-numbers-colores > div >article{
+    width: 256px;
+    height: 364.5px;
+    display: flex;
+  align-items: flex-end;
+}
+.img-number-color{
+    width: 200px;
+    height: 230px;
+}
+/********************************* fin - SECTION NUMBERS COLORES **********************************/
+/********************************* SECTION CONTACTO **********************************/
+#section-contacto{
+    border: solid 2px rgb(255, 229, 32);
+    width: 1080px;
+}
+/********************************* fin - SECTION CONTACTO **********************************/
+/********************************* FOOTER **********************************/
+footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 1280px;
+    border: solid 2px pink;
+    background-color: #5E5E5D;
+}
+footer > article{
+    width: 100%;
+    background-color: #242424;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+footer > article > .footer-publicidad{
+    width: 1080px;
+    height: 75px;
+}
+footer > .parrafo{
+    width: 820px;
+    height: 361px;
+    color: #FFF;
+    font-family: Lato;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    margin-left: 100px;
+    margin-top: 35px;
+}
+footer > .footer-redes{
+    width: 212px;
+    height: 41px;
+    margin-left: 100px;
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+/********************************* fin - FOOTER **********************************/
