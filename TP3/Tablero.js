@@ -1,5 +1,5 @@
 class Tablero{
-    constructor(ctx, img_tabl, colum, fila, radio, espacio, w, h, suma_x, suma_y){
+    constructor(ctx, img_tabl, colum, fila, radio, espacio, w, h, suma_x, suma_y, espacio_hints){
         this.ctx = ctx;
         this.espacio = espacio;
         this.suma_x = suma_x;
@@ -23,6 +23,7 @@ class Tablero{
         this.inicio_draw_x =280;
         this.inicio_draw_y = 80;
         this.hints = [];
+        this.espacio_hints = espacio_hints;
         this.ganador = 0;
     }
 
@@ -125,19 +126,17 @@ class Tablero{
         }
        
     }
-    /*Encuentra el casillero vacio al final mas proximo.
-    *Luego frena para que no dibuje de mas.
-    *Le setea la imagen de la ficha seleccionada Al casillero donde debe ir.
+    /*Le setea la imagen de la ficha seleccionada Al casillero donde debe ir.
     *Le carga el jugador.
-    *Dibuja la Ficha con su metodo de dibujar imagen.
-    El Casillero ahora actua como Ficha*///Solucion rapida
+    *Dibuja la Ficha con su metodo de dibujar imagen.*/
     dibujar_casillero(casillero, ficha_seleccionada){
         casillero.setImage(ficha_seleccionada.getImage());
         casillero.draw_image();
         casillero.setCasillero();
         casillero.setJugador(ficha_seleccionada.getJugador());
     }
-
+    /*Pasada una columna (donde cae la ficha), busca el casillero mas proximo al
+    *final de la columna, que este disponible, es decir casillero=true, y lo retorna.*/
     get_casillero_disponible_en_colum(colum){
         for(let fila = this.fila_max-1; fila >= 0; fila--){
             let casillero = this.matriz[fila][colum];
@@ -196,7 +195,7 @@ class Tablero{
             this.draw_image_hints(x);
             this.ctx.closePath();
             this.hints.push({'x':x,'y':40, 'r':35});
-            x=x+83;
+            x=x+this.espacio_hints;
         }
     }
 
