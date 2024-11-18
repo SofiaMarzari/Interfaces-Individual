@@ -135,7 +135,7 @@ class Tablero{
         casillero.setImage(ficha_seleccionada.getImage());
         casillero.draw_image();
         casillero.setCasillero();
-        casillero.setJugador(ficha_seleccionada.getCasillero());
+        casillero.setJugador(ficha_seleccionada.getJugador());
     }
 
     get_casillero_disponible_en_colum(colum){
