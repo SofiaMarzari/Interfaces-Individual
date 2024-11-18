@@ -23,6 +23,7 @@ class Tablero{
         this.inicio_draw_x =280;
         this.inicio_draw_y = 80;
         this.hints = [];
+        this.ganador = 0;
     }
 
     isPointInside(mouse_x, mouse_y){
@@ -46,7 +47,60 @@ class Tablero{
     }
 
     hay_ganador(){
+        let check1 = this.revisar_horizontal();
+        let check2 = this.revisar_vertical();
+        if(check1){
+           return true;
+        }else if(check2){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    revisar_horizontal(){
+        let cont = 1;
 
+        for(let fila = 0; fila < this.fila_max; fila++){
+            for(let c = 0; c < this.matriz[fila].length-1; c++){
+                if((this.matriz[fila][c].getJugador()==1) || (this.matriz[fila][c].getJugador()==2)){
+                    if(this.matriz[fila][c].getJugador() == this.matriz[fila][c+1].getJugador()){
+                        cont++;
+                        if(cont == 4){
+                            this.ganador = this.matriz[fila][c].getJugador();
+                           return true;
+                        }
+                  
+                
+                    }else{
+                        cont = 1;
+                    }
+                }
+               
+            }
+            cont = 1;
+        }
+    }
+    revisar_vertical(){
+        let cont = 1;
+        let colum = 0;
+        while(colum < this.colum_max){
+            for(let fila = 0; fila < this.fila_max-1; fila++){
+                if((this.matriz[fila][colum].getJugador()==1) || (this.matriz[fila][colum].getJugador()==2)){
+                    if(this.matriz[fila][colum].getJugador() == this.matriz[fila+1][colum].getJugador()){
+                        cont++;
+                        if(cont == 4){
+                            this.ganador = this.matriz[fila][colum].getJugador();
+                           return true;
+                        }
+                    }else{
+                        cont = 1;
+                    }
+                }
+            }
+            cont = 1;
+            colum++;
+        }
+        
     }
     /**Si las coordenadas del casillero actual se ajustan a la posicion del mouse, estoy en la columna donde se dibujara, la retorno**/
     buscar_columna_de_pos_actual(posX, posY){
@@ -201,6 +255,13 @@ class Tablero{
             iniciox = true;
         }
         //this.recorrer_matriz();
+    }
+
+    getGanador(){
+        return this.ganador;
+    }
+    setGanador(){
+        this.ganador =0;
     }
 
 }

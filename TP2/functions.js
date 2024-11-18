@@ -486,10 +486,15 @@ function loadJuegoEnEjecucion() {
                         document.querySelectorAll(".btn_carrusel_sig").forEach(function(btn) {
                             btn.addEventListener('click', translateFunctionSig);
                         });
-                        let div_mensaje = document.getElementById('div-mensaje-juego');
+                       /* let div_mensaje = document.getElementById('div-mensaje-juego');
                         div_mensaje.classList.add('no-visible');
                         let div_timer = document.getElementById('timer-div');
                         div_timer.classList.add('no-visible');
+                        let div_mensaje_ganador = document.getElementById('mensaje_ganador');
+                        div_mensaje_ganador.classList.add('no-visible');
+                        let div_opacity = document.getElementById('div_opacity');
+                        div_opacity.classList.add('no-visible');*/
+                        ocultar_containers_info();
                         document.getElementById('jugar').addEventListener('click', loadConfigJuego);
                     }
                 )
@@ -533,6 +538,8 @@ function loadConfigJuego() {
                         });
                         }
                         document.getElementById('btn_comenzar_juego_form').addEventListener('click', loadJuego);
+                        
+                        ocultar_containers_info();
                     }
                 )
             } else {
@@ -543,6 +550,20 @@ function loadConfigJuego() {
     ).catch(function(response) {
         container_AJAX.innerHTML = '<h1>Error 505</h1>';
     })
+}
+function ocultar_containers_info(){
+    let div_mensaje = document.getElementById('div-mensaje-juego');
+    div_mensaje.classList.remove('visible');
+    div_mensaje.classList.add('no-visible');
+    let div_timer = document.getElementById('timer-div');
+    div_timer.classList.remove('visible');
+    div_timer.classList.add('no-visible');
+    let div_mensaje_ganador = document.getElementById('mensaje_ganador');
+    div_mensaje_ganador.classList.remove('visible');
+    div_mensaje_ganador.classList.add('no-visible');
+    let div_opacity = document.getElementById('div_opacity');
+    div_opacity.classList.remove('visible');
+    div_opacity.classList.add('no-visible');
 }
 function loadJuego() {
     let container_en_ejecucion = document.getElementById('contenedor_en_ejecucion');

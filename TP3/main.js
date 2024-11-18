@@ -2,6 +2,10 @@
     let ctx;
     let timer_container;
     let div_mensaje;
+    let data_mensaje_ganador;
+    let div_opacity;
+    let div_mensaje_ganador;
+    let div_mensaje_completo;
     /************************************************************************* */
     /*Inicializando variables*/
     let jugador1 = [];
@@ -22,10 +26,13 @@
     let val_time = 60;
     let turno = 1;
     function load_main(datosConfig){
-        console.log(datosConfig);
         canvas = document.getElementById('myCanvas');
         ctx = canvas.getContext("2d");
         div_mensaje = document.getElementById('div-mensaje-juego');
+        data_mensaje_ganador = document.getElementById('data-ganador-mensaje');
+        div_mensaje_ganador = document.getElementById('mensaje_ganador');
+        div_opacity = document.getElementById('div_opacity');
+        div_mensaje_completo = document.getElementById('mensaje_completo_info');
         timer_container = document.getElementById('timer-time');
         /**Inicia el juego, empieza a correr el timer.. */
         setInterval(correr_timer, 1000, timer_container);
@@ -142,23 +149,40 @@
                 let ubicacion_de_ficha = tablero.ubicacion_de_ficha(data.x, data.y);
                 if(ubicacion_de_ficha.estado){ //Dibujamos la ficha seleccionada en el tablero y pasamos data del mouse a dicho metodo
                     let casillero_disp = tablero.get_casillero_disponible_en_colum(ubicacion_de_ficha.colum);
-                    ficha_seleccionada.setCoordenadaX(casillero_disp.getCoordenadaX());
-                    ficha_seleccionada.setCoordenadaY(casillero_disp.getCoordenadaY());
-                    //Llamamos a la funcion que inicia la caida de la ficha en el tablero..
-                    comenzar_animacion(ficha_seleccionada, data.x, data.y);
-                    tablero.dibujar_casillero(casillero_disp, ficha_seleccionada);
-                    //Revisamos si la ficha seleccionada es del grupo del jugador 1 o 2 para eliminar una del array de fichas del mismo
-                    if(press_ficha_j1){
-                        jugador1.splice(pos_ficha, 1);
-                        turno = 2;
-                    }else if(press_ficha_j2){
-                        jugador2.splice(pos_ficha, 1);
-                        turno = 1;
+                    if(casillero_disp !== undefined){
+                        ficha_seleccionada.setCoordenadaX(casillero_disp.getCoordenadaX());
+                        ficha_seleccionada.setCoordenadaY(casillero_disp.getCoordenadaY());
+                        //Llamamos a la funcion que inicia la caida de la ficha en el tablero..
+                        comenzar_animacion(ficha_seleccionada, data.x, data.y);
+                        tablero.dibujar_casillero(casillero_disp, ficha_seleccionada);
+                        //Revisamos si la ficha seleccionada es del grupo del jugador 1 o 2 para eliminar una del array de fichas del mismo
+                        if(press_ficha_j1){
+                            jugador1.splice(pos_ficha, 1);
+                            turno = 2;
+                        }else if(press_ficha_j2){
+                            jugador2.splice(pos_ficha, 1);
+                            turno = 1;
+                        }
+                    }else{
+                        div_mensaje.classList.remove('no-visible');
+                        div_mensaje.classList.add('visible');
+                        div_mensaje.innerHTML = "No hay mas lugar en esa columna. ¡Intente nuevamente!";
                     }
-                    //chequear si existe ganador en esta ronda...
-                    /*if(tablero.hay_ganador()){
-                        //no llegue
-                    }*/
+                    
+                    //Chequear si existe ganador...
+                    if(tablero.hay_ganador()){
+                        console.log("hhh");
+                        stop_timer();
+                        div_mensaje_ganador.classList.remove('no-visible');
+                        div_mensaje_ganador.classList.add('visible');
+                        div_opacity.classList.remove('no-visible');
+                        div_opacity.classList.add('visible');
+                        data_mensaje_ganador.innerHTML = "Jugador "+tablero.getGanador();
+                        document.getElementById('btn-reiniciar').addEventListener('click', function(){
+                            reset_variables();
+                            loadConfigJuego();
+                        });
+                    }
                 }else{
                     div_mensaje.classList.remove('no-visible');
                     div_mensaje.classList.add('visible');
@@ -188,17 +212,44 @@
             }
         });
     }
+    function reset_variables(){
+        jugador1 = [];
+        jugador2 = [];
+        ficha_seleccionada = null;
+        press = false;
+        opcion_cantidad_linea = 4; //default 4, deberia tomarse el valor de un select en la vista, para que el usuario elija, y sea dinamico
+        radio,espacio,suma_x,suma_y;
+        pos_ficha,coordX_original, coordY_original;
+        filas_tablero = opcion_cantidad_linea+2;
+        columnas_tablero = opcion_cantidad_linea+3;
+        cant_fichas_jugador = (filas_tablero*columnas_tablero)/2/*cantidad_fichas(opcion_cantidad_linea, filas_tablero, columnas_tablero)*/;
+        img_seleccionada;
+        press_ficha_j1,press_ficha_j2=false;
+        data_width_tablero = 640;
+        data_height_tablero = 530;
+        tablero;
+        val_time = 60;
+        turno = 1;
+    }
     function correr_timer(timer_container){
         if(val_time>=0){
             timer_container.innerHTML = val_time;
             val_time=val_time-1;
         }else{
             stop_timer();
+            div_mensaje_ganador.classList.remove('no-visible');
+            div_mensaje_ganador.classList.add('visible');
+            div_opacity.classList.remove('no-visible');
+            div_opacity.classList.add('visible');
+            div_mensaje_completo.innerHTML = "Se termino el tiempo del juego";
+            document.getElementById('btn-reiniciar').addEventListener('click', function(){
+                reset_variables();
+                loadConfigJuego();
+            });
         }
     }
     function stop_timer(){
         clearInterval(correr_timer);
-       // reset_variables();
     }
     /***
      * Funcion para dibujar grupo de fichas en el canvas
@@ -272,24 +323,6 @@
     
         return {'x':x_mouse, 'y':y_mouse};
     }
-    /*
-    function cantidad_fichas(opcion_cantidad_linea, filas_tablero, columnas_tablero){
-        switch (opcion_cantidad_linea){
-            case 4:
-                filas_tablero = 6;
-                columnas_tablero = 7;
-                break;
-            case 5:
-                filas_tablero = 8;
-                columnas_tablero = 7;
-                break;
-            case 6:
-                filas_tablero = 9;
-                columnas_tablero = 8;
-                break;
-        }
-        return (filas_tablero*columnas_tablero)/2;
-    }*/
     function cargar_grupos_fichas(cant_fichas_jugador, ctx, jugador1, jugador2, img_ficha_j1, img_ficha_j2){
         for(let o = 0; o < cant_fichas_jugador*2; o++){
             let ficha = new Ficha(35, "", ctx, "white", 0, false);
@@ -305,8 +338,4 @@
                 jugador2.push(ficha);
             }
         }
-       /* for(let o = 0; o < cant_fichas_jugador; o++){
-            let ficha = new Ficha(40, "../TP3/uploads/fichaDemonio.svg", ctx, "white", 2);
-            jugador2.push(ficha);
-        }*/
     }

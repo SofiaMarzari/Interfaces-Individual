@@ -1204,6 +1204,7 @@ footer>section>h5 {
         display: flex;
         flex-direction: column;
         align-items: center;
+        position: relative;
     }
     .container_juego_ejecucion>.header_juego {
         height: 125px;
@@ -1291,7 +1292,7 @@ footer>section>h5 {
         position: absolute;
         margin-right: 70px;
         right: 0;
-        top: 35%;
+        top: 5.5%;
       }
       #timer-div>img{
         width: 100%;
@@ -1397,6 +1398,41 @@ footer>section>h5 {
         cursor: pointer;
         background-color: #FFD700;
       }
+      #mensaje_ganador{
+        width: 400px;
+        height: 200px;
+        background-color: whitesmoke;
+        position: absolute;
+        align-content: center;
+        text-align: center;
+        top: 12%;
+        left: 38%;
+        z-index: 10;
+        font-size: 20px;
+        box-shadow: 0px 0px 30px orange;
+        background-color: #00002d;
+        color: white;
+      }
+      #div_opacity{
+        width: 1227px;
+        height: 700px;
+        background-color: #f0f8ff24;
+        position: absolute;
+        z-index: 6;
+        top: 5.3%;
+      }
+      #btn-reiniciar{ 
+        height: 39px;
+        width: 150px;
+        border-radius: 50px;
+        color: #0F2147;
+        font-size: 18px;
+        border: 2px solid #FFD700;
+        font-weight: 700;
+        cursor: pointer;
+        background-color: #FFD700;
+        margin-top: 30px;
+    }
     /***********************************/
     .caja1 {
         margin-top: 20px;
