@@ -1,5 +1,5 @@
 class Tablero{
-    constructor(ctx, img_tabl, colum, fila, radio, espacio, w, h, suma_x, suma_y, espacio_hints){
+    constructor(ctx, img_tabl, colum, fila, radio, espacio, w, h, suma_x, suma_y, espacio_hints, juego_elegido){
         this.ctx = ctx;
         this.espacio = espacio;
         this.suma_x = suma_x;
@@ -25,6 +25,7 @@ class Tablero{
         this.hints = [];
         this.espacio_hints = espacio_hints;
         this.ganador = 0;
+        this.juego_elegido = juego_elegido;
     }
 
     isPointInside(mouse_x, mouse_y){
@@ -66,7 +67,7 @@ class Tablero{
                 if((this.matriz[fila][c].getJugador()==1) || (this.matriz[fila][c].getJugador()==2)){
                     if(this.matriz[fila][c].getJugador() == this.matriz[fila][c+1].getJugador()){
                         cont++;
-                        if(cont == 4){
+                        if(cont == this.juego_elegido){
                             this.ganador = this.matriz[fila][c].getJugador();
                            return true;
                         }
@@ -89,7 +90,7 @@ class Tablero{
                 if((this.matriz[fila][colum].getJugador()==1) || (this.matriz[fila][colum].getJugador()==2)){
                     if(this.matriz[fila][colum].getJugador() == this.matriz[fila+1][colum].getJugador()){
                         cont++;
-                        if(cont == 4){
+                        if(cont == this.juego_elegido){
                             this.ganador = this.matriz[fila][colum].getJugador();
                            return true;
                         }

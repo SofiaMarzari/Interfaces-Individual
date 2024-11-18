@@ -24,7 +24,8 @@
     let data_width_tablero = 640;//default
     let data_height_tablero = 530;//default
     let tablero;
-    let val_time = 60;
+    let val_time = 59;
+    let val_time_minutos = 3;
     let timer_var_interval;
     let turno = 1;
     function load_main(datosConfig){
@@ -83,7 +84,7 @@
         columnas_tablero = opcion_cantidad_linea+3;
         cant_fichas_jugador = (filas_tablero*columnas_tablero)/2/*cantidad_fichas(opcion_cantidad_linea, filas_tablero, columnas_tablero)*/;
         //Instanciamos un tablero y le pasamos los valores para sus atributos
-        tablero = new Tablero(ctx, "../TP3/uploads/tablero_1.jpg", columnas_tablero, filas_tablero, radio, espacio, data_width_tablero, data_height_tablero, suma_x, suma_y, espacio_hints);
+        tablero = new Tablero(ctx, "../TP3/uploads/tablero_1.jpg", columnas_tablero, filas_tablero, radio, espacio, data_width_tablero, data_height_tablero, suma_x, suma_y, espacio_hints, opcion_cantidad_linea);
         //Creamos e iniciamos la matriz del tablero
         tablero.inicializar_matriz();
         //Dibujamos el tablero
@@ -246,13 +247,19 @@
         ficha_seleccionada = null;
         press = false;
         press_ficha_j1,press_ficha_j2=false;
-        val_time = 60;
+        val_time = 59;
+        val_time_minutos = 3;
         turno = 1;
     }
     function correr_timer(timer_container){
-        if(val_time>=0){
-            timer_container.innerHTML = val_time;
-            val_time=val_time-1;
+        if(val_time_minutos>=0){
+            timer_container.innerHTML = val_time_minutos+":"+val_time;
+            if(val_time == 0){
+                val_time = 59;
+                val_time_minutos = val_time_minutos-1;
+            }else{
+                val_time=val_time-1;
+            }
         }else{
             stop_interval(timer_var_interval);
             div_mensaje_ganador.classList.remove('no-visible');
