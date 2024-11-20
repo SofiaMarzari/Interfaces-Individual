@@ -9,25 +9,56 @@ body{
 .no-visible{
     display: none;
 }
+.button_verde_destacado{
+    position: absolute;
+    z-index: 2;
+    border-radius: 111px;
+    border: 8px solid #FFF;
+    background: #83C252;
+    box-shadow: 4px 5px 0px 0px #02187E;
+    color: white;
+}
 /********************************* HEADER **********************************/
 header{
+    width: 1280px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    top: 5%;
+    position: absolute;
+}
+header>div{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border: solid 2px red;
-    width: 1280px;
+    width: 1080px;
+    position: relative;
+}
+#btn-nav-hamburguesa{
+    width: 34px;
+    height: 26px;
+    position: relative;
+    z-index: 2;
+}
+header>div>button{
+    width: 200px;
+    height: 50px;
+    color: #FFF;
+    font-family: Lato;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 900;
+    right:0;
 }
 /********************************* fin - HEADER **********************************/
 /********************************* NAV **********************************/
 nav{
-    border: solid 2px blue;
     width: 1280px;
 }
 
 /********************************* fin - NAV **********************************/
 /********************************* CONTAINER AJAX **********************************/
 #container-body{
-    border: solid 2px green;
     width: 1280px;
     display: flex;
     flex-direction: column;
@@ -39,12 +70,43 @@ nav{
     width: 1280px;
     height: 959.305px;
     background-image: url('./uploads/fondo.png');
+    background-repeat: round;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    overflow: hidden;/*aca*/
+    padding-bottom: 80px;
+}
+#contenedor_personajes_home_inicio{
+    position: relative;
+    width: 700px;
+    height: 500px;
+}
+.imagen_inicio_home_1{/*aca*/
+    position: relative;
+    z-index: 3;
+    top: 40%;
+    left: 10%;
+}
+.imagen_inicio_home_2{/*aca*/
+    position: relative;
+    right: 13%;
+    top: 30px;
+    z-index: 2;
+}
+.imagen_inicio_home_3{/*aca*/
+    position: relative;
+    bottom: 66%;
+    left: 50%;
+    z-index: 1;
 }
 /********************************* fin - SECTION INICIO **********************************/
 /********************************* SECTION MAS DIVERTIDA **********************************/
 #section-mas-divertida{
     width: 1280px;
-    
+    display: flex;/*aca*/
+    flex-direction: column;/*aca*/
+    align-items: center;/*aca*/
 }
 #section-mas-divertida > .section-cards{
     margin-top: 326px;
@@ -52,6 +114,7 @@ nav{
     flex-direction: row;
     justify-content: space-evenly;
     margin-bottom: 113px;
+    width: 1080px;/*aca*/
 }
 #section-mas-divertida > .section-cards >div >p{
     color: #000;
@@ -84,21 +147,14 @@ nav{
     right: 170px;
 }
 #section-descarga-numbers-block>button{
-    position: absolute;
-    z-index: 2;
-    border-radius: 111px;
-    border: 8px solid #FFF;
-    background: #83C252;
-    box-shadow: 4px 5px 0px 0px #02187E;
     width: 540px;
     height: 66px;
+    bottom: 700px;
+    right: 380px;
     font-family: Lato;
     font-size: 31.14px;
     font-style: normal;
     font-weight: 400;
-    color: white;
-    bottom: 700px;
-    right: 380px;
 }
 #section-descarga-numbers-block>img{
     position: absolute;
@@ -142,26 +198,95 @@ nav{
 /********************************* SECTION VIDEO HOME **********************************/
 #section-video-home{
     width: 100%;
-}
-#section-video-home>img{
     position: relative;
-    z-index: 3;
+    align-content: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
-#section-video-home > p{
+#section-video-home>svg{
+    position: relative;
+    z-index: 1;
+}
+#section-video-home > div > p{
     color: #FFF;
     font-family: Lato;
-    font-size: 60px;
+    font-size: 50px;
     font-style: normal;
     font-weight: 600;
     width: 802px;
+    position: absolute;
+    z-index: 3;
     position: relative;
+    bottom: 45%;
+}#section-video-home > div{
+    width: 1080px;
+    height: 700px;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    margin-top: 550px;
+}
+#section-video-home > div > .img_video_seccion{
+    width: 800px;
+    height: 440px;
+    top: 0;
+    position: absolute;
+    z-index: 3;
+}
+#section-video-home > div >  .img_numero_video_seccion{
+    width: 500px;
+    height: 850px;
+    right: -90px;
+    position: absolute;
+    bottom: -10%;
     z-index: 3;
 }
 /********************************* fin - SECTION VIDEO HOME **********************************/
 /********************************* SECTION EXPERIENCIA 3D **********************************/
 #section-experiencia-3d{
-    border: solid 2px rgb(128, 105, 0);
+    width: 100%;
+    height: 1100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#section-experiencia-3d >div{
     width: 1080px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    position: relative;
+}
+#section-experiencia-3d >div > div {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+#section-experiencia-3d > div > div > .p_3d_titulo{
+    color: #9D2121;
+    font-family: Lato;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 94.5%;
+    width: 746px;
+}
+#section-experiencia-3d > div > div > .p_3d_descripcion{
+    color: #000;
+    font-family: Lato;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 94.5%;
+    width: 467px;
+}
+#section-experiencia-3d > div >img{
+    position: absolute;
+    right: -10%;
+    width: 60%;
+    top: 6%;
 }
 /********************************* fin - SECTION EXPERIENCIA 3D **********************************/
 /********************************* SECTION NUMBERS COLORES **********************************/
@@ -182,13 +307,12 @@ nav{
   align-items: flex-end;
 }
 .img-number-color{
-    width: 200px;
-    height: 230px;
+    width: 250px;
+    height: 80%;
 }
 /********************************* fin - SECTION NUMBERS COLORES **********************************/
 /********************************* SECTION CONTACTO **********************************/
 #section-contacto{
-    border: solid 2px rgb(255, 229, 32);
     width: 1080px;
 }
 /********************************* fin - SECTION CONTACTO **********************************/
@@ -198,7 +322,6 @@ footer{
     flex-direction: column;
     justify-content: space-between;
     width: 1280px;
-    border: solid 2px pink;
     background-color: #5E5E5D;
 }
 footer > article{
