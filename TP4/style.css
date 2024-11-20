@@ -160,6 +160,33 @@ nav{
     width: 333px;
     height: 218px;
 }
+#mas_divertida_number_5{
+    position: absolute;
+    z-index: 3;
+    width: 430px;
+    right: 0;
+    height: 1100px;
+    top: 0;
+    transition: transform 0.5s;
+}
+#mas_divertida_number_4{
+    position: absolute;
+    z-index: 3;
+    width: 550px;
+    bottom: -24%;
+    transform: rotateY(150deg);
+    left: 8%;
+    transition: transform 2s;
+}
+#mas_divertida_marco{
+    position: absolute;
+    z-index: 3;
+    width: 576.38px;
+    bottom: 25%;
+    left: 23%;
+    height: 324.351px;
+    transition: transform 4s;
+}
 /********************************* fin - SECTION MAS DIVERTIDA **********************************/
 /********************************* SECTION DESCARGA NUMBERS BLOCK **********************************/
 #section-descarga-numbers-block>.section-descarga-fondo{
@@ -330,6 +357,7 @@ nav{
 #section-numbers-colores{
     width: 100%;
     height: 729px;
+    margin-bottom: 274px;
 }
 #section-numbers-colores > div{
     width: 100%;
@@ -343,16 +371,18 @@ nav{
     display: flex;
     align-items: flex-end;
     overflow: hidden;
+    justify-content: center;
+    box-shadow: 1px 1px 70px 1px #3f3f3f inset;
 }
 .img-number-color{
-    width: 250px;
-    height: 80%;
     transition: transform 2s;
 }
 /********************************* fin - SECTION NUMBERS COLORES **********************************/
 /********************************* SECTION CONTACTO **********************************/
 #section-contacto{
-    width: 1080px;
+    width: 1280px;
+    height: 1296px;
+    position: relative;
 }
 /********************************* fin - SECTION CONTACTO **********************************/
 /********************************* FOOTER **********************************/

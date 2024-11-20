@@ -65,9 +65,9 @@
                     </linearGradient>
                     </defs>
                 </svg>
-                <img style="position: absolute;z-index: 3;bottom: 25%;left: 23%;  width: 576.38px;height: 324.351px;" src="uploads/mapa.png" alt="">
-                <img style="position: absolute;z-index: 3;width: 550px;bottom: -24%;transform: rotateY(150deg);left: 8%;" src="uploads/cuatro_divertido.png" alt="numero4">
-                <img style="position: absolute;z-index: 3;width: 430px;right: 0;height: 1100px;top: 0;" src="uploads/mas_divertida_5.png" alt="numero5">
+                <img id="mas_divertida_marco" src="uploads/mapa.png" alt="">
+                <img id="mas_divertida_number_4" src="uploads/cuatro_divertido.png" alt="numero4">
+                <img id="mas_divertida_number_5" src="uploads/mas_divertida_5.png" alt="numero5">
             </div>
             <section class="section-cards">
                 <div>
@@ -172,40 +172,69 @@
         <section id="section-numbers-colores">
             <div>
                 <article style="background-color: red;">
-                    <img class="img-number-color" src="uploads/rojo_uno.png" alt="rojo">
+                    <img style="width: 80%;height: 70%;" class="img-number-color" src="uploads/rojo_uno.png" alt="rojo">
                 </article>
                 <article style="background-color: rgb(255, 140, 0);">
-                    <img class="img-number-color" src="uploads/naranja_dos.png" alt="naranja">
+                    <img style="width: 90%;height: 90%;" class="img-number-color" src="uploads/naranja_dos.png" alt="naranja">
                 </article>
                 <article style="background-color: rgb(255, 230, 0);">
-                    <img class="img-number-color" src="uploads/amarillo_tres.png" alt="amarillo">
+                    <img style="width: 60%;height: 90%;" class="img-number-color" src="uploads/amarillo_tres.png" alt="amarillo">
                 </article>
                 <article style="background-color: rgb(40, 165, 2);">
-                    <img class="img-number-color" src="uploads/verde_cuatro.png" alt="verde">
+                    <img style="width: 90%;height: 70%;" class="img-number-color" src="uploads/verde_cuatro.png" alt="verde">
                 </article>
                 <article style="background-color: rgb(0, 194, 197);">
-                    <img class="img-number-color" src="uploads/azul_cinco.png" alt="azul">
+                    <img style="width: 75%;height: 95%;" class="img-number-color" src="uploads/azul_cinco.png" alt="azul">
                 </article>
             </div>
             <div>
                 <article style="background-color: rgb(127, 3, 209);">
-                    <img class="img-number-color" src="uploads/violeta_6.png" alt="violeta">
+                    <img style="width: 80%;height: 90%;" class="img-number-color" src="uploads/violeta_6.png" alt="violeta">
                 </article>
                 <article style="background-color: red;">
-                    <img class="img-number-color" src="uploads/multicolor_siete.png" alt="multicolor">
+                    <img style="width:70%;height: 95%;" class="img-number-color" src="uploads/multicolor_siete.png" alt="multicolor">
                 </article>
                 <article style="background-color: rgb(180, 0, 156);">
-                    <img class="img-number-color" src="uploads/rosa_ocho.png" alt="rosa">
+                    <img style="width: 100%;height: 85%;" class="img-number-color" src="uploads/rosa_ocho.png" alt="rosa">
                 </article>
                 <article style="background-color: rgb(97, 97, 97);">
-                    <img class="img-number-color" src="uploads/gris_nueve.png" alt="gris">
+                    <img style="width: 100%;height: 85%;" class="img-number-color" src="uploads/gris_nueve.png" alt="gris">
                 </article>
                 <article style="background-color: rgb(255, 255, 255);">
-                    <img class="img-number-color" src="uploads/blanco_diez.png" alt="blanco">
+                    <img style="width: 100%;height: 95%;" class="img-number-color" src="uploads/blanco_diez.png" alt="blanco">
                 </article>
             </div>
         </section>
-        <section id="section-contacto"></section>
+        <section id="section-contacto">
+            <svg style="position: absolute;z-index: 1;" width="1280" height="1296" viewBox="0 0 1280 1296" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 1296H1280V0H0V1296Z" fill="url(#paint0_linear_1_8)"/>
+                <path d="M0 1296H1280V0H0V1296Z" fill="url(#paint1_linear_1_8)"/>
+                <defs>
+                  <linearGradient id="paint0_linear_1_8" x1="640" y1="1296" x2="640" y2="-91.0001" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#E0D299"/>
+                    <stop offset="0.44" stop-color="#ADF8FD"/>
+                    <stop offset="0.825" stop-color="#EDFDFF"/>
+                    <stop offset="1" stop-color="white"/>
+                  </linearGradient>
+                  <linearGradient id="paint1_linear_1_8" x1="640" y1="1296" x2="640" y2="-91.0001" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#E0D299"/>
+                    <stop offset="0.44" stop-color="#ADF8FD"/>
+                    <stop offset="0.825" stop-color="#EDFDFF"/>
+                    <stop offset="1" stop-color="white"/>
+                  </linearGradient>
+                </defs>
+            </svg>
+            <div style="position: absolute;z-index: 3;width: 1080px;">
+                <p>¿Quieres ser el primero en enterarse de todas las novedades?</p>
+                <form>
+                    <input type="text" placeholder="Ingresa aquí tu correo">
+                    <button>SUSCRIBIRSE</button>
+                </form>
+                <p>Al inscribirse en nuestra lista de correo, nos autoriza a ponernos en contacto con usted para enviarle ofertas y actualizaciones de marketing por correo electrónico, y también acepta nuestra Política de privacidad y las Condiciones del servicio.</p>
+                <img src="uploads/contacto_liciencia.png" alt="">
+            </div>
+            <img style="position: absolute;z-index: 2;bottom: 0;" src="uploads/montaña_contacto.png" alt="">
+        </section>
     </div>
     <footer>
         <article>

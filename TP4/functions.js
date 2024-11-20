@@ -1,6 +1,22 @@
 $(document).ready(function(){
     let logo_header = document.getElementById('logo_header');
     logo_header.classList.add("no-visible");
+
+    /**************************Punto 8*************************************/
+    let numbers_colors_all = document.querySelectorAll(".img-number-color");
+    numbers_colors_all.forEach((number) => {
+        number.addEventListener("mouseover", function(ev){/*Mouse entra al elemento (sobre) */
+            ev.preventDefault();
+            this.style.transform = "scale(1.2)";
+        });
+    });
+    numbers_colors_all.forEach((number) => {
+        number.addEventListener("mouseout", function(ev){/*Mouse sale del elemento */
+            ev.preventDefault();
+            this.style.transform = "scale(1)";
+        });
+    });
+    /**************************fin - Punto 8*************************************/
 });
 document.addEventListener('scroll', function(ev){
     /**************************Punto 1*************************************/
@@ -29,19 +45,21 @@ document.addEventListener('scroll', function(ev){
     }
     /**************************fin - Punto 1*************************************/
 
-    /**************************Punto 8*************************************/
-    let numbers_colors_all = document.querySelectorAll(".img-number-color");
-    numbers_colors_all.forEach((number) => {
-        number.addEventListener("mouseover", function(ev){/*Mouse entra al elemento (sobre) */
-            ev.preventDefault();
-            this.style.transform = "scale(1.2)";
-        });
-    });
-    numbers_colors_all.forEach((number) => {
-        number.addEventListener("mouseout", function(ev){/*Mouse sale del elemento */
-            ev.preventDefault();
-            this.style.transform = "scale(1)";
-        });
-    });
-    /**************************fin - Punto 8*************************************/
+    /**************************Punto *************************************/
+    let number_5_divertido = document.getElementById('mas_divertida_number_5');
+    let number_4_divertido = document.getElementById('mas_divertida_number_4');
+    let marco_divertida = document.getElementById('mas_divertida_marco');
+    if(window.scrollY >= 1100){
+        number_5_divertido.style.transform = "translateY(-20px)";
+        marco_divertida.style.transform = "translateY(-50px)";
+    }else{
+        number_5_divertido.style.transform = "translateY(50px)";
+        marco_divertida.style.transform = "translateY(-30px)";
+    }
+    if(window.scrollY >= 1350){
+        number_4_divertido.style.transform = "rotateY(150deg) translateY(40px)";
+    }else{
+        number_4_divertido.style.transform = "rotateY(150deg) translateY(-40px)";
+    }
+    /**************************fin - Punto *************************************/
 });
