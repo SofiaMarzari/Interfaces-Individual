@@ -42,10 +42,34 @@ header>div{
     position: relative;
 }
 #btn-nav-hamburguesa{
-    width: 34px;
-    height: 26px;
+    width: 54px;
+    height: 50px;
     position: relative;
     z-index: 2;
+    background: none;
+    border: none;
+}
+.linea_hamburguesa{
+    color: orange;
+    font-size: 40px;
+    border: solid 4px white;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 4px;
+    background-color: orange;
+    width: 40px;
+    border-radius: 10px;
+    position: relative;
+    z-index: 3;
+}
+#linea1_hamburguesa{
+    transition: transform 2s;
+}
+#linea2_hamburguesa{
+    transition: transform 2s, bottom 2s;
+}
+#linea3_hamburguesa{
+    transition: transform 2s, bottom 2s;
 }
 #btn-comprar{
     width: 200px;
@@ -182,10 +206,17 @@ nav{
     position: absolute;
     z-index: 3;
     width: 576.38px;
-    bottom: 25%;
-    left: 23%;
+    bottom: 15%;
+    left: 18%;
     height: 324.351px;
     transition: transform 4s;
+    border-radius: 77px;
+    border: 29px solid #1B5F99;
+    overflow: hidden;
+}
+#img_galeria_dinamica{
+    width: 100%;
+    height: 100%;
 }
 /********************************* fin - SECTION MAS DIVERTIDA **********************************/
 /********************************* SECTION DESCARGA NUMBERS BLOCK **********************************/
