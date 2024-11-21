@@ -125,6 +125,25 @@ header>div{
     font-weight: 900;
     right:0;
     transition:  width 2s;
+    overflow: hidden;
+}
+#btn-comprar::after {
+    content: "";
+    background: #0066d2;
+    position: absolute;
+    z-index: -1;
+    padding: 16px 20px;
+    display: block;
+    left: -10%;
+    right: -10%;
+    top: 0;
+    bottom: 0;
+    transform: skewX(5deg) scale(0, 0);
+    transition: 0.3s;
+}
+#btn-comprar:hover::after {
+    transition: 0.3s;
+    transform: skewX(5deg) scale(1, 1);
 }
 /********************************* fin - HEADER **********************************/
 /********************************* NAV **********************************/
@@ -532,7 +551,7 @@ nav>ul{
 #section-numbers-colores{
     width: 100%;
     height: 729px;
-    margin-bottom: 274px;
+    margin-bottom: 0px;
 }
 #section-numbers-colores > div{
     width: 100%;
@@ -558,6 +577,123 @@ nav>ul{
     width: 1280px;
     height: 1296px;
     position: relative;
+}
+#section-contacto>svg{
+    position: absolute;
+    z-index: 1;
+}
+.textos_contacto{
+    position: absolute;
+    z-index: 4;
+    width: 1080px;
+    margin-left: 100px;
+}
+.textos_contacto>form{
+    width: 800px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.textos_contacto>form>button{
+    border-radius: 0px 50px 50px 0px;
+    border: 9px solid #FFF;
+    background: #83C252;
+    width: 200px;
+    height: 69px;
+    color: white;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 900;
+}
+.textos_contacto>form>input{
+    padding-left: 20px;
+    color: rgba(0, 0, 0, 0.39);
+    font-family: Lato;
+    font-size: 20px;
+    letter-spacing: 2.2px;
+    border-radius: 50px 0px 0px 50px;
+    border: 9px solid #FFF;
+    background: #ECECEC;
+    width: 500px;
+    height: 50px;
+}
+.contacto_p_v1{
+    color: #000;
+    font-family: Lato;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 94.5%;
+    width: 816px;
+}
+.contacto_p_v2{
+    color: #000;
+    font-family: Lato;
+    font-size: 20px;
+    line-height: 94.5%;
+    width: 578px;
+    height: 95px;
+    margin-top: 40px;
+}
+.nubes_parallax_contacto{
+    height: 550px;
+    width: 100%;
+    position: absolute;
+    z-index: 3;
+    bottom: 30%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.nubes_parallax_contacto>div{
+    width: 100%;
+    position: relative;
+}
+#nube_parallax_1{
+    height: 124px;
+    position: absolute;
+    right: -270px;
+    transform: translateX(0px); 
+    animation-name: animation_nube_1;
+    animation-duration: 15s;
+    animation-delay: 4s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+@keyframes animation_nube_1{ 
+    0% { transform: translateX(50px); }
+    100% { transform: translateX(-1520px); }
+}
+#nube_parallax_2{
+    height: 124px;
+    position: absolute;
+    right: -220px;
+    top: 60px;
+    transform: scale(1.3);
+    animation-name: animation_nube_2;
+    animation-duration: 25s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+@keyframes animation_nube_2 {
+    0% { transform: translateX(50px) scale(1.3); }
+    100% { transform: translateX(-1525px) scale(1.3);}
+}
+#nube_parallax_3{
+    height: 124px;
+    position: absolute;
+    top: 370px;
+    right: -280px;
+    transform: scale(1.5);
+    animation-name: animation_nube_3;
+    animation-duration: 40s;
+    animation-delay: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+@keyframes animation_nube_3 {
+    0% { transform: translateX(50px) scale(1.5); }
+    100% { transform: translateX(-1780px) scale(1.5);}
 }
 /********************************* fin - SECTION CONTACTO **********************************/
 /********************************* FOOTER **********************************/
