@@ -87,7 +87,7 @@ header>div{
 /********************************* NAV **********************************/
 nav{
     width: 230px;
-    position: absolute;
+    position: fixed;
     left: 0;
     height: 200px;
     z-index: 10;
@@ -214,6 +214,32 @@ nav>ul{
     font-size: 20px;
     width: 333px;
     height: 218px;
+}
+.container_card{
+    position: relative;
+    visibility: hidden;
+    top: 0;
+}
+.container_card_animate1{
+    animation-name: card;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+.container_card_animate2{
+    animation-name: card;
+    animation-duration: 2s;
+    animation-delay: 0.3s;
+    animation-fill-mode: forwards;
+}
+.container_card_animate3{
+    animation-name: card;
+    animation-duration: 2s;
+    animation-delay: 0.6s;
+    animation-fill-mode: forwards;
+}
+@keyframes card {
+    0% {top:200px;visibility: visible;}
+    100% {top: 0px;visibility: visible;}
 }
 #mas_divertida_number_5{
     position: absolute;

@@ -117,4 +117,16 @@ document.addEventListener('scroll', function(ev){
         number_4_divertido.style.transform = "rotateY(150deg) translateY(40px)";
     }
     /**************************fin - Punto 5*************************************/
+    /**************************Punto 7*************************************/
+    let cards = document.querySelectorAll(".container_card");
+    if(window.scrollY >= 1700){
+        for(let i = 0; i <= 3; i++){
+            cards[i].classList.add("container_card_animate"+(i+1));
+        }
+    }else{
+        for(let i = 0; i <= 3; i++){
+            cards[i].classList.remove("container_card_animate"+(i+1));
+        }
+    }
+    /**************************fin - Punto 7*************************************/
 });
