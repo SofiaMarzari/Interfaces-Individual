@@ -201,7 +201,7 @@ nav>ul{
     align-items: center;
 }
 #section-mas-divertida > .section-cards{
-    margin-top: 326px;
+    margin-top: 320px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -227,7 +227,7 @@ nav>ul{
 }
 .container_card_animate2{
     animation-name: card;
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-delay: 0.3s;
     animation-fill-mode: forwards;
 }
@@ -335,6 +335,25 @@ nav>ul{
 }
 #section-mas-amigos > div > .div-izq{
     text-align: center;
+    position: relative;
+}
+#img_galeria_amigos{
+    position: sticky;
+    top: 20%;
+    width: 60%;/*general*/
+    opacity: 1;
+    /*transform: scale(1);
+    transition: transform 1s;*/
+}
+@keyframes zoom_number_galaeria{
+    0% {transform: scale(1);}
+    50% {transform: scale(1.5);}
+    100% {transform: scale(1);}
+}
+.animate_galeria_lateral{
+    animation-name: zoom_number_galeria;
+    animation-direction: alternate-reverse;
+    animation-duration: 2s;
 }
 #section-mas-amigos > div > .div-der > article > p{
     color: #000;
@@ -355,6 +374,7 @@ nav>ul{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    overflow: hidden;
 }
 #section-video-home>svg{
     position: relative;
@@ -371,7 +391,8 @@ nav>ul{
     z-index: 3;
     position: relative;
     bottom: 45%;
-}#section-video-home > div{
+}
+#section-video-home > div{
     width: 1080px;
     height: 700px;
     position: absolute;
@@ -379,12 +400,33 @@ nav>ul{
     z-index: 2;
     margin-top: 550px;
 }
-#section-video-home > div > .img_video_seccion{
-    width: 800px;
-    height: 440px;
-    top: 0;
+#video_home_marco{
     position: absolute;
     z-index: 3;
+    width: 790px;
+    height: 420px;
+    transition: transform 4s;
+    border-radius: 77px;
+    border: 29px solid #1B5F99;
+    overflow: hidden;    
+    top: 0;
+    transform:  translateX(-150px);
+    transition: transform 2s;
+    cursor: pointer;
+}
+.img_video_seccion{
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 2;
+    position: relative;
+}
+#btn-play-video-home{
+    background: none;
+    border: none;
+    z-index: 5;
+    position: relative;
+    bottom: 60%;
+    left: 45%;
 }
 #section-video-home > div >  .img_numero_video_seccion{
     width: 500px;
@@ -393,6 +435,8 @@ nav>ul{
     position: absolute;
     bottom: -10%;
     z-index: 3;
+    transform:  translateY(450px);
+    transition: transform 1s;
 }
 /********************************* fin - SECTION VIDEO HOME **********************************/
 /********************************* SECTION EXPERIENCIA 3D **********************************/
@@ -449,18 +493,18 @@ nav>ul{
 }
 #section-numbers-colores > div{
     width: 100%;
-    height: 364.5px;
+    height: 384px;
     display: flex;
     flex-direction: row;
 }
 #section-numbers-colores > div >article{
-    width: 256px;
-    height: 364.5px;
+    width: 236px;
+    height: 364px;
     display: flex;
     align-items: flex-end;
     overflow: hidden;
     justify-content: center;
-    box-shadow: 1px 1px 70px 1px #3f3f3f inset;
+    box-shadow: 1px 1px 70px 1px #3f3f3f7a inset;
 }
 .img-number-color{
     transition: transform 2s;

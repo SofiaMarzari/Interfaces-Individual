@@ -108,8 +108,8 @@
         <section id="section-mas-amigos">
             <h3>Más amigos, más diversión!</h3>
             <div>
-                <div class="div-izq">
-                    <img src="uploads/0.png" alt="">
+                <div id="container_galeria_lateral" class="div-izq">
+                    
                 </div>
                 <div class="div-der">
                     <article>
@@ -169,7 +169,13 @@
             </svg>
             <div>
                 <p>Mira el video y descubre el sorprendente mundo de los NumberBlocks!</p>
-                <img class="img_video_seccion" src="uploads/img_youtube.png" alt="">
+                <article id="video_home_marco">
+                    <img id="imagen_home_video" class="img_video_seccion" src="uploads/img_youtube.png" alt="">
+                    <iframe id="iframe-video-home" class="img_video_seccion" width="560" height="315" src="https://www.youtube.com/embed/0YKa9DQYdRg?si=GOG-PEK8hpwq86rh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <button id="btn-play-video-home">
+                        <img src="uploads/icono_play.png" alt="">
+                    </button>
+                </article>
                 <img class="img_numero_video_seccion" src="uploads/video_3.png" alt="numero3">
             </div>
         </section>
@@ -184,36 +190,36 @@
             </section>
         <section id="section-numbers-colores">
             <div>
-                <article style="background-color: red;">
+                <article style="background-color: red;border-image: linear-gradient(to top left, rgb(255, 255, 255) 0%, red 60%);border-radius: 5px;border-width: 0px 10px 10px 0px;border-style: solid; border-image-slice: 1;">
                     <img style="width: 80%;height: 70%;" class="img-number-color" src="uploads/rojo_uno.png" alt="rojo">
                 </article>
-                <article style="background-color: rgb(255, 140, 0);">
+                <article style="background-color: rgb(255, 140, 0);border-image: linear-gradient(to top, rgb(255, 255, 255) 20%, rgb(255, 140, 0)100%);border-radius: 5px;border-width: 0px 10px 10px 10px;border-style: solid; border-image-slice: 1;">
                     <img style="width: 90%;height: 90%;" class="img-number-color" src="uploads/naranja_dos.png" alt="naranja">
                 </article>
-                <article style="background-color: rgb(255, 230, 0);">
+                <article style="background-color: rgb(255, 230, 0);border-image: linear-gradient(to top, rgb(255, 255, 255) 20%, rgb(255, 230, 0) 100%);border-radius: 5px;border-width: 0px 10px 10px 10px;border-style: solid; border-image-slice: 1;">
                     <img style="width: 60%;height: 90%;" class="img-number-color" src="uploads/amarillo_tres.png" alt="amarillo">
                 </article>
-                <article style="background-color: rgb(40, 165, 2);">
+                <article style="background-color: rgb(40, 165, 2);border-image: linear-gradient(to top, rgb(255, 255, 255) 20%, rgb(40, 165, 2) 100%);border-radius: 5px;border-width: 0px 10px 10px 10px;border-style: solid; border-image-slice: 1;">
                     <img style="width: 90%;height: 70%;" class="img-number-color" src="uploads/verde_cuatro.png" alt="verde">
                 </article>
-                <article style="background-color: rgb(0, 194, 197);">
+                <article style="background-color: rgb(0, 194, 197);border-image: linear-gradient(to right top, rgb(255, 255, 255) 0%, rgb(0, 194, 197) 60%);border-radius: 5px;border-width: 0px 0px 10px 10px;border-style: solid; border-image-slice: 1;">
                     <img style="width: 75%;height: 95%;" class="img-number-color" src="uploads/azul_cinco.png" alt="azul">
                 </article>
             </div>
             <div>
-                <article style="background-color: rgb(127, 3, 209);">
+                <article style="background-color: rgb(127, 3, 209);border-image: linear-gradient(to top left, rgb(127, 3, 209) 0%, #fff 30%);border-radius: 5px;border-width: 10px 10px 0px 0px;border-style: solid; border-image-slice: 1;">
                     <img style="width: 80%;height: 90%;" class="img-number-color" src="uploads/violeta_6.png" alt="violeta">
                 </article>
-                <article style="background-color: red;">
-                    <img style="width:70%;height: 95%;" class="img-number-color" src="uploads/multicolor_siete.png" alt="multicolor">
+                <article style="background-image: url(uploads/fondo_numero_7.jpg);border-image: linear-gradient(to bottom, rgb(255, 255, 255) 20%, rgb(255, 51, 0) 100%);border-radius: 5px;border-width: 10px 10px 0px 10px;border-style: solid; border-image-slice: 1;">
+                    <img style="width: 70%;height: 95%;" class="img-number-color" src="uploads/multicolor_siete.png" alt="multicolor">
                 </article>
-                <article style="background-color: rgb(180, 0, 156);">
+                <article style="background-color: rgb(180, 0, 156);border-image: linear-gradient(to bottom, #ffffff 20%, rgb(180, 0, 156) 100%);border-radius: 5px;border-width:  10px 10px 0px 10px;border-style: solid; border-image-slice: 1;">
                     <img style="width: 100%;height: 85%;" class="img-number-color" src="uploads/rosa_ocho.png" alt="rosa">
                 </article>
-                <article style="background-color: rgb(97, 97, 97);">
+                <article style="background-color: rgb(97, 97, 97);border-image: linear-gradient(to bottom, #ffffff 20%, rgb(97, 97, 97) 100%);border-radius: 5px;border-width:  10px 10px 0px 10px;border-style: solid; border-image-slice: 1;">
                     <img style="width: 100%;height: 85%;" class="img-number-color" src="uploads/gris_nueve.png" alt="gris">
                 </article>
-                <article style="background-color: rgb(255, 255, 255);">
+                <article style="background-color: rgb(255, 255, 255);border-image: linear-gradient(to right bottom, rgb(255, 255, 255) 0%, rgb(176, 175, 175) 60%);border-radius: 5px;border-width: 10px 0px 0px 10px;border-style: solid; border-image-slice: 1;">
                     <img style="width: 100%;height: 95%;" class="img-number-color" src="uploads/blanco_diez.png" alt="blanco">
                 </article>
             </div>
