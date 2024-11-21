@@ -22,6 +22,49 @@ body{
     box-shadow: 4px 5px 0px 0px #02187E;
     color: white;
 }
+/********************************* LOAD **********************************/
+#contenedor_load{
+    z-index: 50;
+    position: fixed;
+    top: 0;
+    visibility: visible;
+    padding-top: 10%;
+    width: 100% !important;
+    height: 100%;
+    background-color: #5c5959a1;
+    text-align: center;
+}
+#contenedor_load>div{
+    width: 500px;
+    margin-left: 35%;
+    border-radius: 20px;
+    border: solid 3px white;
+    border-radius: 20px;
+    overflow: hidden;
+}
+#contenedor_load>img{
+    position: relative;
+    top: 0px;
+    transform: rotateZ(10deg);
+    animation-name: load_animation;
+    animation-duration: 3s;
+    animation-delay: 1s;
+    animation-iteration-count: 2;
+}
+@keyframes load_animation {
+    0%  {top:0px;transform: rotateZ(10deg);}
+    50%  {top:-50px;transform: rotateZ(-10deg);}
+    100% {top:0px;transform: rotateZ(10deg);}
+  }
+#barra_loader{
+    color: white;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 20%;
+    background-color: #1B5F99;
+    height: 30px;
+}
+/********************************* fin -  LOAD **********************************/
 /********************************* HEADER **********************************/
 header{
     width: 1280px;

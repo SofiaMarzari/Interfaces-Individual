@@ -11,7 +11,14 @@ let iframe_home_video = document.getElementById('iframe-video-home');
 let imagen_home_video = document.getElementById('imagen_home_video');
 let video_home_marco = document.getElementById('video_home_marco');
 let personaje_video = document.querySelector(".img_numero_video_seccion");
-$(document).ready(function(){
+let interval_loader;
+let width_carga = 0;
+let contenedor_loader = document.getElementById("contenedor_load");
+let barra_loader = document.getElementById("barra_loader");
+document.addEventListener('DOMContentLoaded', function(){
+    /**************************Punto 1********************************/
+    interval_loader = setInterval(loadTimer, 70);//ACA
+    /**************************fin - Punto 1********************************/
     let logo_header = document.getElementById('logo_header');
     logo_header.classList.add("no-visible");
 
@@ -50,6 +57,18 @@ $(document).ready(function(){
     });
    /**************************fin - Punto 10A********************************/
 });
+/**************************Punto 1********************************/
+function loadTimer(){
+    if (width_carga >= 100) {
+        clearInterval(interval_loader);
+        contenedor_loader.style.visibility = "hidden";
+      } else {
+        width_carga++; 
+        barra_loader.style.width = width_carga + '%'; 
+        /*porcentaje_loader.innerHTML = width_carga * 1  + '%';*/
+      }
+}
+/**************************fin - Punto 1********************************/
 /**************************Punto 6*************************************/
 function galeria_dinamica(){
     if(cont_galeria == paths_imagenes_galeria.length-1){
