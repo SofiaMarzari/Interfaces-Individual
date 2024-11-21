@@ -48,13 +48,27 @@ btn_hamburguesa.addEventListener('click', function(){
         linea2_hamburguesa.style.bottom = "0px";
         linea3_hamburguesa.style.transform = "rotate(0deg)";
         linea3_hamburguesa.style.bottom = "0px";
+        this.style.transform = "translateX(0)";
         open_nav = false;
+        /*LI del NAV*/
+        document.querySelectorAll(".li_nav_principal").forEach((li) => {
+            li.style.visibility = "hidden";
+            li.style.backgroundColor = "#00D1D500";
+            li.style.transform = "rotate(90deg) translate(90px, 140px)";
+        });
     }else{
         linea1_hamburguesa.style.transform = "rotate(45deg)";
         linea2_hamburguesa.style.transform = "rotate(-45deg)";
         linea2_hamburguesa.style.bottom = "11px";
         linea3_hamburguesa.style.transform = "rotate(-45deg)";
         linea3_hamburguesa.style.bottom = "23px";
+        this.style.transform = "translateX(-80px)";
+        /*LI del NAV*/
+        document.querySelectorAll(".li_nav_principal").forEach((li) => {
+            li.style.visibility = "visible";
+            li.style.backgroundColor = "#00D1D5";
+            li.style.transform = "rotate(0deg) translate(0px, 0px)";
+        });
         open_nav = true;
     }
 });

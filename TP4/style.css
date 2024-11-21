@@ -48,6 +48,7 @@ header>div{
     z-index: 2;
     background: none;
     border: none;
+    transition: transform 1s;
 }
 .linea_hamburguesa{
     color: orange;
@@ -85,9 +86,39 @@ header>div{
 /********************************* fin - HEADER **********************************/
 /********************************* NAV **********************************/
 nav{
-    width: 1280px;
+    width: 230px;
+    position: absolute;
+    left: 0;
+    height: 200px;
+    z-index: 10;
+    top: 14%;
+    margin-left: 35px;
 }
-
+nav>ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    justify-content: end;
+    margin-top: 0px;
+    padding-left: 0px;
+    margin-bottom: 0px;
+}
+.li_nav_principal{
+    width: 100%;
+    height: 50px;
+    color: #FFF;
+    font-family: Lato;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow: 1px 0px 10px 0px white inset;
+    align-self: center;
+    transform: rotate(90deg) translate(90px, 140px);
+    visibility: hidden;
+    transition: transform 2s, visibility 2s, background-color 2s;
+}
 /********************************* fin - NAV **********************************/
 /********************************* CONTAINER AJAX **********************************/
 #container-body{
