@@ -695,6 +695,18 @@ nav>ul{
     0% { transform: translateX(50px) scale(1.5); }
     100% { transform: translateX(-1780px) scale(1.5);}
 }
+.container_gif{
+    position: absolute;
+    bottom: 0;
+    height: 997px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+.gif{
+    z-index: 12;
+}
 /********************************* fin - SECTION CONTACTO **********************************/
 /********************************* FOOTER **********************************/
 footer{
