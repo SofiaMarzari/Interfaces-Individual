@@ -31,7 +31,7 @@ body{
     padding-top: 10%;
     width: 100% !important;
     height: 100%;
-    background-color: #5c5959a1;
+    background-color: #100f0ff0;
     text-align: center;
 }
 #contenedor_load>div{
@@ -92,6 +92,7 @@ header>div{
     background: none;
     border: none;
     transition: transform 1s;
+    cursor: pointer;
 }
 .linea_hamburguesa{
     color: orange;
@@ -126,6 +127,7 @@ header>div{
     right:0;
     transition:  width 2s;
     overflow: hidden;
+    cursor: pointer;
 }
 #btn-comprar::after {
     content: "";
@@ -182,6 +184,7 @@ nav>ul{
     padding-left: 7px;
     transform:  skewX(1deg) scale(0, 0);
     transition:  transform 1s;
+    cursor: pointer;
 }
 /********************************* fin - NAV **********************************/
 /********************************* CONTAINER AJAX **********************************/
@@ -263,7 +266,7 @@ nav>ul{
 }
 .div_a_inicio{
     position: relative;
-    transform: translateY(0px);
+    transform: translateY(0px) translateX(-10px);
     transition: transform 1s;
 }
 .div_b_inicio{
@@ -311,17 +314,17 @@ nav>ul{
 .container_card_animate2{
     animation-name: card;
     animation-duration: 1s;
-    animation-delay: 0.3s;
+    animation-delay: 0.6s;
     animation-fill-mode: forwards;
 }
 .container_card_animate3{
     animation-name: card;
     animation-duration: 2s;
-    animation-delay: 0.6s;
+    animation-delay: 0.9s;
     animation-fill-mode: forwards;
 }
 @keyframes card {
-    0% {top:200px;visibility: visible;}
+    0% {top:300px;visibility: visible;}
     100% {top: 0px;visibility: visible;}
 }
 #mas_divertida_number_5{

@@ -150,12 +150,12 @@ document.addEventListener('scroll', function(ev){
     let div_fondo_inicio = document.querySelector(".div_fondo_inicio");
     let div_a_inicio = document.querySelector(".div_a_inicio");
     let div_c_inicio = document.querySelector(".div_c_inicio");
-    if (window.scrollY >= 30) {
-        div_a_inicio.style.transform = "translateY(50px)";
+    if (window.scrollY >= 190) {
+        div_a_inicio.style.transform = "translateY(50px) translateX(0px)";
         div_c_inicio.style.transform = "translateY(50px)";
-        div_fondo_inicio.style.transform = "translateY(-40px)";
+        div_fondo_inicio.style.transform = "translateY(-50px)";
     } else {
-        div_a_inicio.style.transform = "translateY(0px)";
+        div_a_inicio.style.transform = "translateY(0px) translateX(-10px)";
         div_c_inicio.style.transform = "translateY(0px)";
         div_fondo_inicio.style.transform = "translateY(0px)";
     }
@@ -179,7 +179,7 @@ document.addEventListener('scroll', function(ev){
     /**************************fin - Punto 5*************************************/
     /**************************Punto 7*************************************/
     let cards = document.querySelectorAll(".container_card");
-    if(window.scrollY >= 1600){
+    if(window.scrollY >= 2000){
         for(let i = 0; i < 3; i++){
             cards[i].classList.add("container_card_animate"+(i+1));
         }
