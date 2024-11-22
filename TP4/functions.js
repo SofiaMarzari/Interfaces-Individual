@@ -84,6 +84,7 @@ btn_hamburguesa.addEventListener('click', function(){
     let linea1_hamburguesa = document.getElementById('linea1_hamburguesa');
     let linea2_hamburguesa = document.getElementById('linea2_hamburguesa');
     let linea3_hamburguesa = document.getElementById('linea3_hamburguesa');
+    let nav = document.getElementById('nav');
     if(open_nav){
         linea1_hamburguesa.style.transform = "rotate(0deg)";
         linea2_hamburguesa.style.transform = "rotate(0deg)";
@@ -92,11 +93,13 @@ btn_hamburguesa.addEventListener('click', function(){
         linea3_hamburguesa.style.bottom = "0px";
         this.style.transform = "translateX(0)";
         open_nav = false;
+        nav.style.visibility = "hidden";
         /*LI del NAV*/
         document.querySelectorAll(".li_nav_principal").forEach((li) => {
             li.style.visibility = "hidden";
             li.style.backgroundColor = "#00D1D500";
-            li.style.transform = "rotate(90deg) translate(90px, 140px)";
+            /*li.style.transform = "rotate(90deg) translate(90px, 140px)";*/
+            li.style.transform = "skewX(1deg) scale(0, 0)";
         });
     }else{
         linea1_hamburguesa.style.transform = "rotate(45deg)";
@@ -105,11 +108,13 @@ btn_hamburguesa.addEventListener('click', function(){
         linea3_hamburguesa.style.transform = "rotate(-45deg)";
         linea3_hamburguesa.style.bottom = "23px";
         this.style.transform = "translateX(-80px)";
+        nav.style.visibility = "visible";
         /*LI del NAV*/
         document.querySelectorAll(".li_nav_principal").forEach((li) => {
             li.style.visibility = "visible";
             li.style.backgroundColor = "#00D1D5";
-            li.style.transform = "rotate(0deg) translate(0px, 0px)";
+            /*li.style.transform = "rotate(0deg) translate(0px, 0px)";*/
+            li.style.transform = "skewX(1deg) scale(1, 1)";
         });
         open_nav = true;
     }
