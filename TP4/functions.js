@@ -141,7 +141,20 @@ document.addEventListener('scroll', function(ev){
         btn_comprar.style.fontSize = "20px";
     }
     /**************************fin - Punto 1*************************************/
-
+    /**************************Punto 4********************************/
+    let div_fondo_inicio = document.querySelector(".div_fondo_inicio");
+    let div_a_inicio = document.querySelector(".div_a_inicio");
+    let div_c_inicio = document.querySelector(".div_c_inicio");
+    if (window.scrollY >= 30) {
+        div_a_inicio.style.transform = "translateY(50px)";
+        div_c_inicio.style.transform = "translateY(50px)";
+        div_fondo_inicio.style.transform = "translateY(-40px)";
+    } else {
+        div_a_inicio.style.transform = "translateY(0px)";
+        div_c_inicio.style.transform = "translateY(0px)";
+        div_fondo_inicio.style.transform = "translateY(0px)";
+    }
+    /**************************fin - Punto 4********************************/
     /**************************Punto 5*************************************/
     let number_5_divertido = document.getElementById('mas_divertida_number_5');
     let number_4_divertido = document.getElementById('mas_divertida_number_4');
