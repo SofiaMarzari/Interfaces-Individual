@@ -15,6 +15,7 @@ let interval_loader;
 let width_carga = 0;
 let contenedor_loader = document.getElementById("contenedor_load");
 let barra_loader = document.getElementById("barra_loader");
+let descargas_section = document.getElementById('img_descargas');
 document.addEventListener('DOMContentLoaded', function(){
     /**************************Punto 1********************************/
     interval_loader = setInterval(loadTimer, 70);//ACA
@@ -56,7 +57,44 @@ document.addEventListener('DOMContentLoaded', function(){
         this.classList.add('no-visible');
     });
    /**************************fin - Punto 10A********************************/
+   /************************Punto 8**************************/
+    descargas_section.addEventListener('mousemove', mousemove_descargas); 
+    descargas_section.addEventListener('mouseout', mouseout_descargas);
+    /******************************************************** */
 });
+/**************************Punto 8********************************/
+function mousemove_descargas(event){
+    let descargas_section = document.getElementById('img_descargas');
+    event.preventDefault();
+    let x = event.clientX;
+    let y = event.clientY; 
+    console.log(x+" - "+y);
+   if((x >364)&&(y >280)){
+
+    descargas_section.style.transform = "translate(0px) scale(1)";
+        descargas_section.style.transform = "translate(64px) scale(1.1)";
+        descargas_section.style.transition = " 0.6s";
+   }
+   if((x >880)&&(y >200)){
+
+    descargas_section.style.transform = "translate(0px) scale(1)";
+    descargas_section.style.transform = "translate(-64px) scale(1.1)";
+    descargas_section.style.transition = " 0.6s";
+    }
+    if(((x >600)&&(x<700))&&(y >300)){
+
+        descargas_section.style.transform = "translate(0px) scale(1)";
+        descargas_section.style.transform = " translateX(0px) translateY(50px) scale(1.1)";
+        descargas_section.style.transition = " 0.6s";
+    }
+}
+/************************** fin - Punto 8********************************/
+function mouseout_descargas(event){
+    let descargas_section = document.getElementById('img_descargas');
+    event.preventDefault();
+    descargas_section.style.transform = "translate(0px) scale(1)";
+    descargas_section.style.transform = "translate(0px) scale(1)";
+}
 /**************************Punto 1********************************/
 function loadTimer(){
     if (width_carga >= 100) {

@@ -371,6 +371,7 @@ nav>ul{
     width: 100%;
     height: 1157px;
     position: relative;
+    overflow: hidden;
 }
 #section-descarga-numbers-block>h6{
     position: absolute;
